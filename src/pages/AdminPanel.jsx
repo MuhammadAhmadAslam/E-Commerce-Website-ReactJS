@@ -3,93 +3,34 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { motion } from "framer-motion";
 import HeaderDashed from "../components/HeaderDashed";
-
+// import useNavigate from "react-router-dom"
 const AdminPanel = () => {
-  const [showPassword, setShowPassword] = useState(false);
-
-	const validationSchema = Yup.object().shape({
-		email: Yup.string()
-			.email("Invalid email format")
-			.required("Email is required"),
-		password: Yup.string()
-			.required("Password is required")
-			.min(8, "Password must be at least 8 characters")
-			.matches(/[a-z]/, "Password must contain at least one lowercase letter")
-			.matches(/[A-Z]/, "Password must contain at least one uppercase letter")
-			.matches(
-				/[!@#$%^&*(),.?":{}|<>]/,
-				"Password must contain at least one special character"
-			),
-	});
-
-	const handleSubmit = (values) => {
-		console.log("Form data", values);
+	const [Password, setPassword] = useState('');
+	const [email, setEmail] = useState('')
+	// const navigate = useNavigate()
+	const checkCredetinal = () => {
+		if (email == "Hello Admin" && Password == "myE-Commerce123@") {
+			alert('ok ki report hae')
+			// navigate('dashboard/admin')
+		}else{
+			alert('sahi kar')
+		}
 	};
 
+
+
+
 	return (
-		<motion.div
-			initial={{ opacity: 0 }}
-			animate={{ opacity: 1 }}
-			exit={{ opacity: 0 }}
-			className="admin-panel text-center sec-padd"
-		>
-			<div className="container">
-				<HeaderDashed head1="ADMIN" head2="PANEL" />
-
-				<Formik
-					initialValues={{ email: "", password: "" }}
-					validationSchema={validationSchema}
-					onSubmit={handleSubmit}
-				>
-					{({ isSubmitting }) => (
-						<Form className="mt-5 d-flex flex-column gap-5 align-items-center">
-							<div className="d-flex flex-column align-items-start w-100">
-								<label htmlFor="email" className="mb-2 fs-4">
-									Email:
-								</label>
-								<Field
-									className="p-3 py-203 outline-0 w-100"
-									name="email"
-									type="text"
-									id="email"
-									placeholder="example@gmail.com"
-								/>
-								<ErrorMessage
-									name="email"
-									component="div"
-									className="text-danger mt-2"
-								/>
-							</div>
-							<div className="d-flex flex-column align-items-start w-100">
-								<label htmlFor="password" className="mb-2 fs-4 w-100 d-flex justify-content-between">
-									Password: <span className={`cursor c-gray ${showPassword && 'active'}`} onClick={() => setShowPassword(prev=>!prev)}>show</span>
-								</label>
-								<Field
-									className="p-3 py-203 outline-0 w-100"
-									name="password"
-									type={`${showPassword? 'text' : 'password'}`}
-									id="password"
-									placeholder="Enter Your Password"
-								/>
-
-								<ErrorMessage
-									name="password"
-									component="div"
-									className="text-danger mt-2"
-								/>
-							</div>
-							<button
-								className="btn bg-black py-203 px-5 rounded c-white fs-5"
-								type="submit"
-								disabled={isSubmitting}
-							>
-								Sign In
-							</button>
-						</Form>
-					)}
-				</Formik>
+		<section>
+			<h1 className="text-center mt-5" style={{ MarginTop: "30px" }}>Admin Panel</h1>
+			<div className="d-flex align-items-center justify-content-center flex-column w-100 border mt-5" style={{ height: "30vh" }} >
+				<input type="text" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Enter A Email" className="md-w-full" style={{ width: "40%", height: "40px", outline: "none" }} />
+				<br />
+				<input type="text" value={Password} onChange={(event) => setPassword(event.target.value)} placeholder="Enter A Password" style={{ width: "40%", height: "40px", outline: "none" }} />
+				<br />
+				<button onClick={checkCredetinal} style={{ border: "none", backgroundColor: "#3D3D3D", color: "white", padding: "7px", width: "80px" }}>Login</button>
 			</div>
-		</motion.div>
+		</section>
 	);
 };
 

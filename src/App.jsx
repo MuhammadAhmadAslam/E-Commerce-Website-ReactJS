@@ -27,6 +27,7 @@ import { AnimatePresence } from "framer-motion";
 import Login from "./pages/Login";
 import SearchBar from "./components/SearchBar";
 import { ShopContext } from "./context/ShopContext";
+import Dashboard from "./pages/DashboardOrder";
 
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
 					<Route path="/about" element={<About />} />
 					<Route path="/contact" element={<Contact />} />
 					<Route path="/admin-panel" element={<AdminPanel />} />
+					<Route path="dashboard/admin/order" element={<Dashboard />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/cart" element={<ShoppingCart />} />
 					<Route path="/products/:productId" element={<ProductDetails />} />
