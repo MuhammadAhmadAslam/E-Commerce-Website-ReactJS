@@ -31,7 +31,7 @@ const MixedAutoSlider = () => {
 	return (
 		<section className="mixed-slider">
 			{/* Map through images to create slides */}
-			<div className="border-05 p-0 overflow-hidden flex-wrap d-flex">
+			<div className=" p-0 overflow-hidden flex-wrap d-flex">
 				{/* Text section for the current slide */}
 				<article className="text py-5 m-auto col-12 col-md-6">
 					<div className="fit-content m-auto">
