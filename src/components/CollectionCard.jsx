@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
+import { Image } from "antd";
 
 
 const CollectionCard = ({data: { _id, image, name, price }, classPadding}) => {
@@ -15,7 +16,7 @@ const CollectionCard = ({data: { _id, image, name, price }, classPadding}) => {
 			data-aos={"fade-up"}
 		>
 			<figure className="overflow-hidden rounded">
-				<img
+				<Image
 					src={image[0]}    
 					alt={name}
 					className="card-img rounded mx-h-300 trans-3 img-scall"

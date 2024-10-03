@@ -14,6 +14,7 @@ import FetchWaitingMsg from "../components/FetchWaitingMsg";
 
 import { motion } from "framer-motion";
 import { ShopContext } from "../context/ShopContext";
+import { Image } from "antd";
 
 const ProductDetails = () => {
 	const {productId} = useParams();
@@ -117,7 +118,7 @@ const ProductDetails = () => {
 					<main className="product-wrapper d-flex gap-3 gap-lg-5 flex-wrap align-items-start">
 						{/* Product Images */}
 						<figure className="d-flex flex-column flex-sm-row-reverse row-gap-3 column-gap-2 col-12 col-sm justify-content-sm-between">
-							<img
+							<Image
 								style={{ maxHeight: "390px" }}
 								src={`${productData.image[activeImage]}`}
 								className="col-12 col-sm-9"
@@ -125,7 +126,7 @@ const ProductDetails = () => {
 							/>
 							<div className="samples col-2 col-sm d-flex flex-sm-column gap-1">
 								{productData.image.map((img, i) => (
-									<img
+									<Image
 										src={`${img}`}
 										className={`w-100 trans-3 preview-img ${
 											activeImage === i ? "active" : ""

@@ -1,3 +1,5 @@
+import { Image } from "antd";
+
 const SingleFeature = ({ img, classLayout, head, text }) => {
 	return (
 		<article

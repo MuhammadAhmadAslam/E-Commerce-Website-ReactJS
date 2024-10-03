@@ -1,3 +1,4 @@
+import { Image } from "antd";
 
 const DescribedImage = ({img, imgTitle, sideText, styleImg, styleText, styleInLarge}) => {
 	return (
@@ -5,7 +6,7 @@ const DescribedImage = ({img, imgTitle, sideText, styleImg, styleText, styleInLa
 			<div className={`row align-items-lg-center row-gap-4 ${styleInLarge}`}>
 				
 				{/* Display image with dynamic classes */}
-				<img
+				<Image
 					className={`col-12 col-md-6 ${styleImg}`}
 					src={img}
 					alt={imgTitle}

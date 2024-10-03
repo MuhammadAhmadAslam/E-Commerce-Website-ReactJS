@@ -6,7 +6,6 @@ const SubscriptionForm = () => {
 	const handleForm = (e) => {
 		e.preventDefault();
 		console.log('subecibed sucessfully');
-		// clear input
 		setEmailValue('')
 	}
 
