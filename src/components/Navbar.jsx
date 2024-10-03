@@ -95,10 +95,10 @@ const WebsiteNavbar = ({ cartedProductLength, input, setInput }) => {
           closeIcon={<CloseOutlined />}
         >
           <div className="d-flex flex-column">
-            <Link to="/" className="nav-link-hover mx-3" style={{ textDecoration: "none", fontSize: "25px" , color: "#9E9995"}}>Home</Link>
-            <Link to="/collection" className="nav-link-hover mx-3" style={{ textDecoration: "none", fontSize: "25px" , color: "#9E9995"}}>Shop</Link>
-            <Link to="/about" className="nav-link-hover mx-3" style={{ textDecoration: "none", fontSize: "25px" , color: "#9E9995"}}>About</Link>
-            <Link to="/contact" className="nav-link-hover mx-3" style={{ textDecoration: "none", fontSize: "25px" , color: "#9E9995"}}>Contact</Link>
+            <Link to="/" className="nav-link-hover mx-3" style={{ textDecoration: "none", fontSize: "29px" , color: "#9E9995"}}>Home</Link>
+            <Link to="/collection" className="nav-link-hover mx-3" style={{ textDecoration: "none", fontSize: "29px" , color: "#9E9995"}}>Shop</Link>
+            <Link to="/about" className="nav-link-hover mx-3" style={{ textDecoration: "none", fontSize: "29px" , color: "#9E9995"}}>About</Link>
+            <Link to="/contact" className="nav-link-hover mx-3" style={{ textDecoration: "none", fontSize: "29px" , color: "#9E9995"}}>Contact</Link>
           </div>
         </Drawer>
 
