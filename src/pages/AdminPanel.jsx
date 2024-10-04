@@ -3,15 +3,15 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { motion } from "framer-motion";
 import HeaderDashed from "../components/HeaderDashed";
-// import useNavigate from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 const AdminPanel = () => {
 	const [Password, setPassword] = useState('');
 	const [email, setEmail] = useState('')
-	// const navigate = useNavigate()
+	const navigate = useNavigate()
 	const checkCredetinal = () => {
 		if (email == "Hello Admin" && Password == "myE-Commerce123@") {
 			alert('ok ki report hae')
-			// navigate('dashboard/admin')
+			navigate('/dashboard/order/admin')
 		}else{
 			alert('sahi kar')
 		}
@@ -22,8 +22,12 @@ const AdminPanel = () => {
 
 	return (
 		<section>
-			<h1 className="text-center mt-5" style={{ MarginTop: "30px" }}>Admin Panel</h1>
-			<div className="d-flex align-items-center justify-content-center flex-column w-100 border mt-5" style={{ height: "30vh" }} >
+
+		<div className="mt-5">
+
+			<HeaderDashed head1="Log" head2="IN" />
+		</div>
+			<div className="d-flex align-items-center justify-content-center flex-column w-100 mt-5" style={{ height: "30vh" }} >
 				<input type="text" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Enter A Email" className="md-w-full" style={{ width: "40%", height: "40px", outline: "none" }} />
 				<br />
 				<input type="text" value={Password} onChange={(event) => setPassword(event.target.value)} placeholder="Enter A Password" style={{ width: "40%", height: "40px", outline: "none" }} />
