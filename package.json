@@ -20,6 +20,7 @@
     "framer-motion": "^11.3.31",
     "json-serve": "^0.1.0",
     "json-server": "^1.0.0-beta.2",
+    "mdb-react-ui-kit": "^9.0.0",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.5",
     "react-bootstrap-icons": "^1.11.4",

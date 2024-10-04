@@ -584,3 +584,17 @@ nav ul a.active {
 	}
      }
      
+
+     .cart-card{
+		width: 30%;
+     }
+     @media screen and (min-width: 800px) and (max-width: 1300px) {
+	.cart-card{
+		width: 45%;
+	}
+     }
+     @media screen and (min-width: 0px) and (max-width: 800px) {
+	.cart-card{
+		width: 100%;
+	}
+     }

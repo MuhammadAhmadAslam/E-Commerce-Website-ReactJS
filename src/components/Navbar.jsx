@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Badge, Drawer } from 'antd';
 import {
   MenuOutlined,
@@ -8,15 +8,19 @@ import {
 } from '@ant-design/icons';
 import "../App.css";
 import { Link } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
 
 const WebsiteNavbar = ({ cartedProductLength, input, setInput }) => {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [searchVisible, setSearchVisible] = useState(false);
 
-  // Toggle the drawer for mobile menu
+ 
+  let {cartItems}  = useContext(CartContext)
+  
+  
   const toggleDrawer = () => setDrawerVisible(!drawerVisible);
 
-  // Toggle the search bar
+
   const toggleSearch = () => setSearchVisible(!searchVisible);
 
   return (
@@ -41,7 +45,7 @@ const WebsiteNavbar = ({ cartedProductLength, input, setInput }) => {
             {/* Icons on the right for large screens */}
             <div className="d-none d-md-flex align-items-center gap-2">
               <Link to={'/cart'}>
-                <Badge count={cartedProductLength}>
+                <Badge count={cartItems.length}>
                   <ShoppingCartOutlined className="cursor-pointer text-black" style={{ fontSize: '30px' }} />
                 </Badge>
               </Link>
@@ -76,7 +80,7 @@ const WebsiteNavbar = ({ cartedProductLength, input, setInput }) => {
                 <SearchOutlined className="text-xl cursor-pointer text-black" onClick={toggleSearch} />
               )} */}
               <Link to={'/cart'}>
-                <Badge count={cartedProductLength}>
+                <Badge count={cartItems.length}>
                   <ShoppingCartOutlined className="text-xl cursor-pointer text-black" />
                 </Badge>
               </Link>
