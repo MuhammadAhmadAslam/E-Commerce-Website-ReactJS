@@ -6,17 +6,17 @@ function CartContextProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  
+
   useEffect(() => {
     if (isLoaded) {
-           localStorage.setItem("cartItems", JSON.stringify(cartItems));
-           console.log("local storage mae add hogae hae data" , cartItems);
+      localStorage.setItem("E-Commerce-CartItems", JSON.stringify(cartItems));
+      console.log("local storage mae add hogae hae data", cartItems);
     }
   }, [cartItems]);
 
   useEffect(() => {
-       console.log("item add hhorahe hae");   
-    const itemsFromStorage = localStorage.getItem("cartItems");
+    console.log("item add hhorahe hae");
+    const itemsFromStorage = localStorage.getItem("E-Commerce-CartItems");
     console.log("itemsFromStorage=>", itemsFromStorage);
     if (itemsFromStorage) {
       setCartItems([...JSON.parse(itemsFromStorage)]);
@@ -30,18 +30,18 @@ function CartContextProvider({ children }) {
     //agr item add he , to uski quantity barhado
     //check if item exist
     const itemIndex = cartItems.findIndex((data) => {
-       data.id == item.id
-       console.log(data , "yae data");
-       
-    } )
+      data.id == item.id
+      console.log(data, "yae data");
+
+    })
     if (itemIndex == -1) {
-      arr.push( { ...item, quantity: 1 });
+      arr.push({ ...item, quantity: 1 });
       console.log("add hogaya");
     } else {
       arr[itemIndex].quantity++;
       console.log("item add hae paehlae saw");
-      console.log(arr[itemIndex] , "yae wala product cart hae paehlae sae");
-      
+      console.log(arr[itemIndex], "yae wala product cart hae paehlae sae");
+
     }
     setCartItems([...arr]);
   }
