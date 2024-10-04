@@ -16,7 +16,7 @@ import { Image } from "antd";
 import "../App.css"
 export default function ShoppingCart() {
 
-  let Cartdata = JSON.parse(localStorage.getItem("cartItems"))
+  let Cartdata = JSON.parse(localStorage.getItem("E-Commerce-CartItems"))
 
   let cartedData = [...Cartdata]
 
