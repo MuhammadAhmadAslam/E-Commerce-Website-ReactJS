@@ -350,7 +350,7 @@ export default function ShoppingCart() {
               }}
             >
               <h1 style={{ textAlign: "center" }}>Your Cart Is Empty</h1>
-              <Link style={{ color: "black" }} to={"/"}>
+              <Link style={{ color: "black" }} to={"/collection"}>
                 Shop Trending Products Now
               </Link>
             </div>

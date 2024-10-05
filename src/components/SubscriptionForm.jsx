@@ -32,7 +32,7 @@ const SubscriptionForm = () => {
 						required
 					/>
 					{/* <button className="btn rounded-0 py-203 bg-black c-white col-4 col-sm-3 fs-tiny" onClick={handleForm}> */}
-					<button className="btn rounded-0 py-203 bg-black c-white col-4 col-sm-3 fs-tiny">
+					<button style={{backgroundColor : "#0D6DB7" , border: "none" , color : "white"}}  className=" rounded-0 py-203  col-4 col-sm-3 fs-tiny">
 						SUBSCRIBE
 					</button>
 				</form>

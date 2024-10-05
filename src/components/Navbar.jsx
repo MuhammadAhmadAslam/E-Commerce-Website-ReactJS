@@ -30,23 +30,23 @@ const WebsiteNavbar = ({ cartedProductLength, input, setInput }) => {
           <div className="d-flex justify-content-between align-items-center py-3">
 
             {/* Logo */}
-            <Link to={'/'} className="d-flex align-items-center" style={{ textDecoration: "none" , color : "#9E9995"}}>
-              <span className="text-lg text-dark font-bold ml-2" style={{color : "#9E9995"}}>E-Commerce Website</span>
+            <Link to={'/'} className="d-flex align-items-center" style={{ textDecoration: "none" , color : "#f5f5f5"}}>
+              <span className="text-lg font-bold ml-2" style={{color : "#9B80FD"}}>E-Commerce Website</span>
             </Link>
 
             {/* Center menu for large screens */}
             <div className="d-none d-md-flex flex-nowrap">
-              <Link to="/" className="nav-link-hover mx-3 hover:text-black transition duration-300" style={{ textDecoration: "none", fontSize: "15px" , color: "#9E9995"}}>Home</Link>
-              <Link to="/collection" className="nav-link-hover mx-3 hover:text-black transition duration-300" style={{ textDecoration: "none", fontSize: "15px" , color: "#9E9995"}}>Shop</Link>
-              <Link to="/about" className="nav-link-hover mx-3 hover:text-black transition duration-300" style={{ textDecoration: "none", fontSize: "15px" , color: "#9E9995"}}>About</Link>
-              <Link to="/contact" className="nav-link-hover mx-3 hover:text-black transition duration-300" style={{ textDecoration: "none", fontSize: "15px" , color: "#9E9995"}}>Contact</Link>
+              <Link to="/" className="nav-link-hover mx-3 hover:text-black transition duration-300" style={{ textDecoration: "none", fontSize: "15px" , color: "#0D6DB7"}}>Home</Link>
+              <Link to="/collection" className="nav-link-hover mx-3 hover:text-black transition duration-300" style={{ textDecoration: "none", fontSize: "15px" , color: "#0D6DB7"}}>Shop</Link>
+              <Link to="/about" className="nav-link-hover mx-3 hover:text-black transition duration-300" style={{ textDecoration: "none", fontSize: "15px" , color: "#0D6DB7"}}>About</Link>
+              <Link to="/contact" className="nav-link-hover mx-3 hover:text-black transition duration-300" style={{ textDecoration: "none", fontSize: "15px" , color: "#0D6DB7"}}>Contact</Link>
             </div>
 
             {/* Icons on the right for large screens */}
             <div className="d-none d-md-flex align-items-center gap-2">
               <Link to={'/cart'}>
                 <Badge count={cartItems.length}>
-                  <ShoppingCartOutlined className="cursor-pointer text-black" style={{ fontSize: '30px' }} />
+                  <ShoppingCartOutlined className="cursor-pointer text-black" style={{ fontSize: '30px' , color : "#9B80FD" }} />
                 </Badge>
               </Link>
 
@@ -81,10 +81,10 @@ const WebsiteNavbar = ({ cartedProductLength, input, setInput }) => {
               )} */}
               <Link to={'/cart'}>
                 <Badge count={cartItems.length}>
-                  <ShoppingCartOutlined className="cursor-pointer text-black" style={{fontSize : "20px" , marginRight: "5px"}} />
+                  <ShoppingCartOutlined className="cursor-pointer " style={{fontSize : "20px"  , color : "#9B80FD" , marginRight: "5px"}} />
                 </Badge>
               </Link>
-              <MenuOutlined className="text-xl cursor-pointer text-black" onClick={toggleDrawer} />
+              <MenuOutlined className="text-xl cursor-pointer" style={{color : "#0D6DB7"}}  onClick={toggleDrawer} />
             </div>
           </div>
         </div>
@@ -96,13 +96,13 @@ const WebsiteNavbar = ({ cartedProductLength, input, setInput }) => {
           closable={true}
           onClose={toggleDrawer}
           visible={drawerVisible}
-          closeIcon={<CloseOutlined />}
+          closeIcon={<CloseOutlined style={{color : "#0D6DB7"}} />}
         >
           <div className="d-flex flex-column">
-            <Link to="/" className="nav-link-hover mx-3" style={{ textDecoration: "none", fontSize: "29px" , color: "#9E9995"}}>Home</Link>
-            <Link to="/collection" className="nav-link-hover mx-3" style={{ textDecoration: "none", fontSize: "29px" , color: "#9E9995"}}>Shop</Link>
-            <Link to="/about" className="nav-link-hover mx-3" style={{ textDecoration: "none", fontSize: "29px" , color: "#9E9995"}}>About</Link>
-            <Link to="/contact" className="nav-link-hover mx-3" style={{ textDecoration: "none", fontSize: "29px" , color: "#9E9995"}}>Contact</Link>
+            <Link to="/" className="nav-link-hover mx-3" style={{ textDecoration: "none", fontSize: "29px" , color: "#0D6DB7"}}>Home</Link>
+            <Link to="/collection" className="nav-link-hover mx-3" style={{ textDecoration: "none", fontSize: "29px" , color: "#0D6DB7"}}>Shop</Link>
+            <Link to="/about" className="nav-link-hover mx-3" style={{ textDecoration: "none", fontSize: "29px" , color: "#0D6DB7"}}>About</Link>
+            <Link to="/contact" className="nav-link-hover mx-3" style={{ textDecoration: "none", fontSize: "29px" , color: "#0D6DB7"}}>Contact</Link>
           </div>
         </Drawer>
 

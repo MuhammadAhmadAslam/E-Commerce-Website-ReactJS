@@ -12,7 +12,7 @@ const DescribedImage = ({img, imgTitle, sideText, styleImg, styleText, styleInLa
 					alt={imgTitle}
 				/>
 				{/* Display descriptive text beside the image */}
-				<article className={`col-12 col-md-6 text-start c-mm-gray ${styleText}`}>
+				<article className={`col-12 col-md-6 text-start c-mm-gray ${styleText}`} style={{color : "#0D6DB7"}}>
                     {sideText}
 				</article>
 			</div>
