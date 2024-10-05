@@ -26,22 +26,13 @@ function CartContextProvider({ children }) {
 
   function addItemToCart(item) {
     const arr = cartItems;
-    //item add nahn he , to add krdo
-    //agr item add he , to uski quantity barhado
-    //check if item exist
     const itemIndex = cartItems.findIndex((data) => {
       data.id == item.id
       console.log(data, "yae data");
-
     })
     if (itemIndex == -1) {
       arr.push({ ...item, quantity: 1 });
       console.log("add hogaya");
-    } else {
-      arr[itemIndex].quantity++;
-      console.log("item add hae paehlae saw");
-      console.log(arr[itemIndex], "yae wala product cart hae paehlae sae");
-
     }
     setCartItems([...arr]);
   }
@@ -63,7 +54,7 @@ function CartContextProvider({ children }) {
 
   function isItemAdded(id) {
     const arr = cartItems;
-    const itemIndex = cartItems.findIndex((data) => data.id == id);
+    const itemIndex = cartItems.findIndex((data) => data._id == id);
     if (itemIndex == -1) {
       return null;
     } else {

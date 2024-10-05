@@ -13,7 +13,6 @@ import { CartContext } from "../context/CartContext";
 const ProductDetails = () => {
 	const { productId } = useParams();
 	const { productsData } = useContext(ShopContext);
-	
 
 
 	const [productData, setProductData] = useState(null);
@@ -33,7 +32,7 @@ const ProductDetails = () => {
 	}, [productId, productsData]);
 
 
-	
+
 
 	// Function to find related products based on category
 	const findRelatedProducts = () => {
@@ -54,12 +53,12 @@ const ProductDetails = () => {
 			</main>
 		)
 	};
-	
 
-	let { addItemToCart, isItemAdded , cartItems  } = useContext(CartContext)
 
-		console.log(cartItems ,"cart items");
-		
+	let { addItemToCart, isItemAdded, cartItems } = useContext(CartContext)
+
+	console.log(cartItems, "cart items");
+
 
 
 	return (
@@ -145,8 +144,10 @@ const ProductDetails = () => {
 									</div>
 								</div>
 								{/* Add to Cart Button */}
-								<button onClick={() => addItemToCart(productData)} className="addcart-btn btn rounded-0 bg-black c-white mt-4 trans-3 mb-2 py-2 px-4">
-									Add To Cart
+								<button onClick={() => addItemToCart(productData)} disabled={ isItemAdded(productData._id) ? true : false}  className="addcart-btn btn rounded-0 bg-black c-white mt-4 trans-3 mb-2 py-2 px-4">
+									{
+										isItemAdded(productData._id) ? "Added" : "Add To Cart"
+									}
 								</button>
 								{/* Product Description and Reviews */}
 								<ul className="features ps-0 mt-4 border-top pt-3">

@@ -1,33 +1,53 @@
-import React from "react";
+import React, { useContext } from "react";
 import { MDBBtn, MDBCard, MDBCardBody, MDBCol, MDBRow, MDBTypography } from "mdb-react-ui-kit";
 import { Image } from "antd";
 import { DeleteOutlined } from '@ant-design/icons'; // Ant Design delete icon
 import "../App.css";
+import { CartContext } from "../context/CartContext";
 
 export default function ShoppingCart() {
-  let Cartdata = JSON.parse(localStorage.getItem("E-Commerce-CartItems"));
-  let cartedData = [...Cartdata];
+  let Cartdata = JSON.parse(localStorage.getItem("E-Commerce-CartItems")) || [];
+  let cartedData = Array.isArray(Cartdata) ? [...Cartdata] : [];
+  let { setCartItems } = useContext(CartContext)
+
 
   function updateQunatity(data, operator) {
-    // Logic to update quantity
+    const updatedProduct = { ...data };
+
+    if (operator === "plus") {
+      updatedProduct.quantity++;
+    } else if (operator === "minus" && updatedProduct.quantity > 1) {
+      updatedProduct.quantity--;
+    }
+  
+
+    const updatedCart = cartedData.map((product) =>
+      product._id === updatedProduct._id ? updatedProduct : product
+    );
+  
+    localStorage.setItem("E-Commerce-CartItems", JSON.stringify(updatedCart));
+    setCartItems(updatedCart);
   }
+  
 
   function removeItem(data) {
-    // Logic to remove item
+    let newFilter = cartedData.filter((product) => product._id != data._id)
+    localStorage.setItem("E-Commerce-CartItems", JSON.stringify(newFilter));
+    setCartItems(newFilter) 
   }
 
   return (
     <section className="h-100" style={{ backgroundColor: "#eee", paddingTop: "60px" }}>
-      <MDBRow className="justify-content-center align-items-center h-100" style={{ width: "100%" }}>
-        <MDBCol md="12" sm={12}>
+      <div className="justify-content-center align-items-center h-100 container" style={{ width: "100%" }}>
+        <div>
           <div className="d-flex justify-content-between align-items-center mb-4">
-            <MDBTypography tag="h3" className="fw-normal mb-0 text-black">
+            <h1 className="fw-normal mb-0 text-black">
               Shopping Cart
-            </MDBTypography>
+            </h1>
             <div>
               <p className="mb-0">
                 <span className="text-muted">Sort by:</span>
-                <a href="#!" className="text-body">
+                <a href="#" className="text-body">
                   price <i className="fas fa-angle-down mt-1"></i>
                 </a>
               </p>
@@ -59,7 +79,7 @@ export default function ShoppingCart() {
                 </div>
 
                 {/* Row 2: Quantity Controls and Dustbin Icon */}
-                <div className="d-flex justify-content-between align-items-center mt-2" style={{ flexWrap: "wrap" }}>
+                <div className="d-flex justify-content-end align-items-center mt-2" style={{ flexWrap: "wrap" }}>
                   <div className="d-flex align-items-center">
                     <button
                       onClick={() => updateQunatity(data, "plus")}
@@ -68,16 +88,17 @@ export default function ShoppingCart() {
                     >
                       +
                     </button>
-                    <p
+                    <h4
                       style={{
                         textAlign: "center",
                         marginLeft: "5px",
                         marginRight: "15px",
                         marginTop: "15px",
+
                       }}
                     >
                       {data.quantity}
-                    </p>
+                    </h4>
                     <button
                       onClick={() => updateQunatity(data, "minus")}
                       className="btn btn-sm btn-dark me-2"
@@ -111,8 +132,8 @@ export default function ShoppingCart() {
               </MDBBtn>
             </MDBCardBody>
           </MDBCard>
-        </MDBCol>
-      </MDBRow>
+        </div>
+      </div>
     </section>
   );
 }
