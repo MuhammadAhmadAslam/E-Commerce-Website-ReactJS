@@ -4,7 +4,7 @@ export const CartContext = createContext();
 
 function CartContextProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
 
 
   useEffect(() => {
