@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext , useState } from "react";
 import { MDBBtn, MDBCard, MDBCardBody, MDBCol, MDBRow, MDBTypography } from "mdb-react-ui-kit";
 import { Button, Image } from "antd";
 import { DeleteOutlined } from '@ant-design/icons'; // Ant Design delete icon
 import "../App.css";
 import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
+import CheckoutModal from "../components/CheckOutModal";
 
 // export default function ShoppingCart() {
 //   let Cartdata = JSON.parse(localStorage.getItem("E-Commerce-CartItems")) || [];
@@ -163,6 +164,16 @@ export default function ShoppingCart() {
   let cartedData = Array.isArray(Cartdata) ? [...Cartdata] : [];
   let { setCartItems } = useContext(CartContext);
 
+
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
   function updateQunatity(data, operator) {
     const updatedProduct = { ...data };
 
@@ -317,11 +328,14 @@ export default function ShoppingCart() {
                     cursor: "pointer",
                     transition: "background-color 0.3s",
                   }}
+                  onClick={openModal}
                   onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#094c8a"}
                   onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "#0D6DB7"}
                 >
                  CheckOut
                 </button>
+
+                <CheckoutModal isVisible={isModalVisible} onClose={closeModal} />
                 </div>
               </div>
             </div>
