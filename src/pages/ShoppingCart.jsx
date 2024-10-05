@@ -19,21 +19,21 @@ export default function ShoppingCart() {
     } else if (operator === "minus" && updatedProduct.quantity > 1) {
       updatedProduct.quantity--;
     }
-  
+
 
     const updatedCart = cartedData.map((product) =>
       product._id === updatedProduct._id ? updatedProduct : product
     );
-  
+
     localStorage.setItem("E-Commerce-CartItems", JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   }
-  
+
 
   function removeItem(data) {
     let newFilter = cartedData.filter((product) => product._id != data._id)
     localStorage.setItem("E-Commerce-CartItems", JSON.stringify(newFilter));
-    setCartItems(newFilter) 
+    setCartItems(newFilter)
   }
 
   return (
@@ -75,6 +75,7 @@ export default function ShoppingCart() {
                   <div className="d-flex flex-column" style={{ flexGrow: 1 }}>
                     <p className="mb-1 fw-bold">{data.name}</p>
                     <p className="text-muted mb-0">Category</p>
+                    <p className="text-muted mb-0"> $ {data.price}</p>
                   </div>
                 </div>
 
@@ -117,21 +118,33 @@ export default function ShoppingCart() {
           </div>
 
           {/* Apply Coupon Section */}
-          <MDBCard className="mb-4">
-            <MDBCardBody className="p-4 d-flex flex-row">
-              <input type="text" className="form-control flex-fill me-2" placeholder="Discount code" />
-              <MDBBtn>Apply</MDBBtn>
-            </MDBCardBody>
-          </MDBCard>
+
+
+          <div className="row" style={{backgroundColor : "white", padding: "10px"}}>
+            <div className="col-sm-12 col-lg-6 col-md-6 d-flex justify-content-center align-items-center flex-col-reverse" style={{flexWrap : "wrap" , padding: "6px"}}>
+              <input type="text" placeholder="Enter Coupoun Code" />
+              <button>Apply</button>
+            </div>
+          <div className="col-sm-12 col-lg-6 col-md-6 d-flex justify-content-start flex-column">
+            <strong>Total Amount</strong>
+            <p style={{paddingTop : "14px"}}>
+            <strong>Delievery Charges : </strong>
+                $0
+            </p>
+            <p>
+            <strong>Discount : </strong>
+                $0
+            </p>
+            <p>
+            <strong>Total Charge : </strong>
+                $
+            </p>
+    
+          </div>
+          </div>
 
           {/* Checkout Button */}
-          <MDBCard>
-            <MDBCardBody>
-              <MDBBtn className="ms-3" color="warning" block size="lg">
-                Checkout
-              </MDBBtn>
-            </MDBCardBody>
-          </MDBCard>
+
         </div>
       </div>
     </section>

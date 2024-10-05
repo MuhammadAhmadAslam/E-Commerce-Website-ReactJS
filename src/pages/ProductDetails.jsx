@@ -98,7 +98,7 @@ const ProductDetails = () => {
 							</figure>
 							{/* Product Info */}
 							<article className="col-12 col-sm col-lg-8 mb-3">
-								<h1 className="mt-3 mrt-0 fs-2">{productData.name}</h1>
+								<strong className="mt-3 mrt-0 fs-2"> {productData.name}</strong>
 								{/* Product Rating */}
 								<div className="rating">
 									<div className="stars mb-3">
@@ -123,7 +123,7 @@ const ProductDetails = () => {
 									</span>
 								</div>
 								{/* Product Description */}
-								<p className="c-gray">{productData.description}</p>
+								<em className="c-gray">{productData.description}</em>
 								{/* Select Size */}
 								<div className="select-size mt-4">
 									<span className="c-gray fw-bold">Select Size</span>
@@ -151,12 +151,12 @@ const ProductDetails = () => {
 								</button>
 								{/* Product Description and Reviews */}
 								<ul className="features ps-0 mt-4 border-top pt-3">
-									<li className="mb-1">100% Original product.</li>
+									<li className="mb-1"><strong>100% Original product.</strong></li>
 									<li className="mb-1">
-										Cash on delivery is available on this product.
+										<strong>Cash on delivery is available on this product.</strong>
 									</li>
 									<li className="mb-1">
-										Easy return and exchange policy within 7 days.
+										<strong>Easy return and exchange policy within 7 days.</strong>
 									</li>
 								</ul>
 							</article>
