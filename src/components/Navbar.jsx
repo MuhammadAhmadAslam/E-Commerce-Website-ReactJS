@@ -81,7 +81,7 @@ const WebsiteNavbar = ({ cartedProductLength, input, setInput }) => {
               )} */}
               <Link to={'/cart'}>
                 <Badge count={cartItems.length}>
-                  <ShoppingCartOutlined className="text-xl cursor-pointer text-black" />
+                  <ShoppingCartOutlined className="cursor-pointer text-black" style={{fontSize : "20px" , marginRight: "5px"}} />
                 </Badge>
               </Link>
               <MenuOutlined className="text-xl cursor-pointer text-black" onClick={toggleDrawer} />
