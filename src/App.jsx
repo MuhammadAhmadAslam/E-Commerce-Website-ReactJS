@@ -18,16 +18,19 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ProductDetails from "./pages/ProductDetails";
 import ShoppingCart from "./pages/ShoppingCart";
-import PlaceOrder from "./pages/PlaceOrder";
-import Orders from "./pages/Orders";
+
 
 // Importing hooks and animations
 import { useContext, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
-import Login from "./pages/Login";
 import SearchBar from "./components/SearchBar";
 import { ShopContext } from "./context/ShopContext";
-import Dashboard from "./pages/DashboardOrder";
+import Dashboard from "./pages/Dashboard";
+import AllProducts from "./pages/AllProducts";
+import PendingOrders from "./pages/PendingOrders";
+import CompletedOrders from "./pages/CompletedOrders";
+import LatestProduct from "./pages/LatestProduct";
+import TrendingProducts from "./pages/TrendingProducts";
 
 
 function App() {
@@ -40,15 +43,7 @@ function App() {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, [pathname]);
-	
-	// const search = localStorage.getItem('activeSearch');
-	// useEffect(() => {
-		
-	// 	console.log(localStorage.getItem('activeSearch'));
-		
-		
-		
-	// }, [search]) 
+
 
 	return (
 		<div className="App">
@@ -63,13 +58,15 @@ function App() {
 					<Route path="/about" element={<About />} />
 					<Route path="/contact" element={<Contact />} />
 					<Route path="/admin-panel" element={<AdminPanel />} />
-					<Route path="dashboard/order/admin" element={<Dashboard />} />
-					<Route path="/login" element={<Login />} />
+					<Route path="dashboard/admin" element={<Dashboard />} />
 					<Route path="/cart" element={<ShoppingCart />} />
 					<Route path="/products/:productId" element={<ProductDetails />} />
-					<Route path="/place-order" element={<PlaceOrder />} />
-					<Route path="/orders" element={<Orders />} />
 					<Route path="*" element={<NotFound />} />
+					<Route path="/dashboard/admin/products" element={<AllProducts />} />
+					<Route path="/dashboard/admin/pending-orders" element={<PendingOrders />} />
+					<Route path="/dashboard/admin/completed-orders" element={<CompletedOrders />} />
+					<Route path="dashboard/admin/latest-products" element={<LatestProduct />} />
+					<Route path="dashboard/admin/trending-products" element={<TrendingProducts />} />
 				</Routes>
 			</AnimatePresence>
 
