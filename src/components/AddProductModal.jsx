@@ -113,12 +113,10 @@ const AddProductModal = ({ isVisible, onClose }) => {
         uploadTask.on(
           'state_changed',
           (snapshot) => {
-            // Optionally, you can track upload progress here
             const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log(`Upload is ${progress}% done`);
           },
           (error) => {
-            // Handle upload error
             console.error('Upload failed:', error);
             reject(error); // Reject promise on error
           },

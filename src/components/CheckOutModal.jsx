@@ -1,25 +1,67 @@
-import React, { useState } from "react";
-import { Modal, Button, Input, Select, Radio, Row, Col, Form } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
-
-const { Option } = Select;
-
-const CheckoutModal = ({ isVisible, onClose }) => {
+import { Modal } from "antd";
+import React , {useContext, useState} from "react";
+import { CartContext } from "../context/CartContext";
+export default function CheckoutModal({ isVisible, onClose }) {
   const [paymentMethod, setPaymentMethod] = useState("cash");
-
-  const handlePaymentChange = (e) => {
-    setPaymentMethod(e.target.value);
-  };
+  let {cartItems} = useContext(CartContext)
+  
 
   const inputStyle = {
-    borderRadius: "8px",
-    border: "1px solid #ccc",
+    width: "100%",
+    border: "1px solid #9B80FD",
+    outline: "none",
+    height: "40px",
+    color: "black",
     padding: "10px",
   };
 
+  const textareaStyle = {
+    ...inputStyle,
+    height: "150px",
+    resize: "none",
+  };
+
+  const buttonStyle = {
+    backgroundColor: "#9B80FD",
+    border: "none",
+    color: "white",
+    width: "100%",
+    height: "50px",
+    marginTop: "30px",
+  };
+
+  const errorStyle = {
+    color: "red",
+    fontSize: "12px",
+  };
+
+
+  let [firstName , setFirstName] = useState('')
+  let [LastName , setLastName] = useState('')
+  let [phoneNumber , setPhoneNumber] = useState('')
+  let [emailAddress , setEmailAddress] = useState('')
+  let [Address1 , setAddress1] = useState('')
+  let [Address2 , setAddress2] = useState('')
+  let [city , setCity] = useState('')
+  let [Country , setCountry] = useState('')
+  let [state , setState] = useState('')
+
   const handleSubmit = (values) => {
-    console.log("Form values: ", values);
-    // Handle form submission here
+        let CheckOutObj = {
+            firstName,
+            LastName,
+            phoneNumber,
+            emailAddress,
+            Address1,
+            Address2,
+            city,
+            Country,
+            state,
+            cartItems
+        }
+
+        console.log(CheckOutObj);
   };
 
   return (
@@ -31,127 +73,136 @@ const CheckoutModal = ({ isVisible, onClose }) => {
       closeIcon={<CloseOutlined style={{ fontSize: "16px" }} />}
       centered
     >
-      <div style={{ padding: "10px 20px" }}>
-        <Form
-          onFinish={handleSubmit}
-          layout="vertical"
-        >
-          <Row gutter={[16, 16]}>
-            {/* First Name and Last Name */}
-            <Col xs={24} md={12}>
-              <Form.Item
-                name="firstName"
-                rules={[{ required: true, message: "First Name is required" }]}
-              >
-                <Input placeholder="Your First Name" style={inputStyle} />
-              </Form.Item>
-            </Col>
-            <Col xs={24} md={12}>
-              <Form.Item
-                name="lastName"
-                rules={[{ required: true, message: "Last Name is required" }]}
-              >
-                <Input placeholder="Your Last Name" style={inputStyle} />
-              </Form.Item>
-            </Col>
+        <div style={{ marginBottom: "10px" }}>
+          <label style={{ color: "#9B80FD", fontSize: "21px" }}>First Name</label>
+          <input
+            name="firstName"
+            placeholder="Your First Name"
+            type="text"
+            style={inputStyle}
+            required
+            onChange={(event) => setFirstName(event.target.value)}
+            value={firstName}
+          />
+        </div>
 
-            {/* Phone Number and Email Address */}
-            <Col xs={24} md={12}>
-              <Form.Item
-                name="phoneNumber"
-                rules={[{ required: true, message: "Phone Number is required" }]}
-              >
-                <Input placeholder="Phone Number" style={inputStyle} />
-              </Form.Item>
-            </Col>
-            <Col xs={24} md={12}>
-              <Form.Item
-                name="email"
-                rules={[{ required: true, message: "Email Address is required" }, { type: 'email', message: 'Please enter a valid email' }]}
-              >
-                <Input placeholder="Email Address" style={inputStyle} />
-              </Form.Item>
-            </Col>
+        <div style={{ marginBottom: "10px" }}>
+          <label style={{ color: "#9B80FD", fontSize: "21px" }}>Last Name</label>
+          <input
+            name="lastName"
+            placeholder="Your Last Name"
+            type="text"
+            style={inputStyle}
+            required
+            value={LastName}
+            onChange={(event) => setLastName(event.target.value)}
+          />
+        </div>
 
-            {/* Address 1 and Address 2 */}
-            <Col xs={24}>
-              <Form.Item
-                name="address1"
-                rules={[{ required: true, message: "Address 1 is required" }]}
-              >
-                <Input placeholder="Address 1" style={inputStyle} />
-              </Form.Item>
-            </Col>
-            <Col xs={24}>
-              <Form.Item name="address2">
-                <Input placeholder="Address 2" style={inputStyle} />
-              </Form.Item>
-            </Col>
+        <div style={{ marginBottom: "10px" }}>
+          <label style={{ color: "#9B80FD", fontSize: "21px" }}>Phone Number</label>
+          <input
+            name="phoneNumber"
+            placeholder="Phone Number"
+            type="text"
+            style={inputStyle}
+            required
+            value={phoneNumber}
+            onChange={(event) => setPhoneNumber(event.target.value)}
+          />
+        </div>
 
-            {/* City, Country, State */}
-            <Col xs={24} md={8}>
-              <Form.Item
-                name="city"
-                rules={[{ required: true, message: "City is required" }]}
-              >
-                <Input placeholder="City" style={inputStyle} />
-              </Form.Item>
-            </Col>
-            <Col xs={24} md={8}>
-              <Form.Item
-                name="country"
-                rules={[{ required: true, message: "Country is required" }]}
-              >
-                <Select placeholder="Country" style={{ ...inputStyle, width: "100%" }}>
-                  <Option value="USA">USA</Option>
-                  <Option value="Canada">Canada</Option>
-                  <Option value="UK">UK</Option>
-                </Select>
-              </Form.Item>
-            </Col>
-            <Col xs={24} md={8}>
-              <Form.Item
-                name="state"
-                rules={[{ required: true, message: "State is required" }]}
-              >
-                <Input placeholder="State" style={inputStyle} />
-              </Form.Item>
-            </Col>
-          </Row>
+        <div style={{ marginBottom: "10px" }}>
+          <label style={{ color: "#9B80FD", fontSize: "21px" }}>Email Address</label>
+          <input
+            name="email"
+            placeholder="Email Address"
+            type="email"
+            style={inputStyle}
+            required
+            value={emailAddress}
+            onChange={(event) => setEmailAddress(event.target.value)}
+          />
+        </div>
 
-          {/* Payment Method */}
-          <div>
-            <strong>Payment Method</strong>
-            <Form.Item
-              name="paymentMethod"
-              rules={[{ required: true, message: "Please select a payment method" }]}
-              initialValue={paymentMethod}
-            >
-              <Radio.Group onChange={handlePaymentChange} value={paymentMethod} style={{ marginTop: "10px" }}>
-                <Radio value="cash">Cash On Delivery</Radio>
-                <Radio value="online">Online Transfer</Radio>
-              </Radio.Group>
-            </Form.Item>
-          </div>
+        <div style={{ marginBottom: "10px" }}>
+          <label style={{ color: "#9B80FD", fontSize: "21px" }}>Address 1</label>
+          <input
+            name="address1"
+            placeholder="Address 1"
+            type="text"
+            style={inputStyle}
+            required
+            value={Address1}
+            onChange={(event) => setAddress1(event.target.value)}
+          />
+        </div>
 
-          {/* Checkout Button */}
-          <Button
-            type="primary"
-            htmlType="submit"
-            style={{
-              width: "100%",
-              backgroundColor: "#0D6DB7",
-              borderRadius: "8px",
-              padding: "12px",
-              fontSize: "16px",
-            }}
+        <div style={{ marginBottom: "10px" }}>
+          <label style={{ color: "#9B80FD", fontSize: "21px" }}>Address 2</label>
+          <input
+            name="address2"
+            placeholder="Address 2"
+            type="text"
+            style={inputStyle}
+            required
+            value={Address2}
+            onChange={(event) => setAddress2(event.target.value)}
+          />
+        </div>
+
+        <div style={{ marginBottom: "10px" }}>
+          <label style={{ color: "#9B80FD", fontSize: "21px" }}>City</label>
+          <input
+            name="city"
+            placeholder="City"
+            type="text"
+            style={inputStyle}
+            required
+            value={city}
+            onChange={(event) => setCity(event.target.value)}
+          />
+        </div>
+
+        <div style={{ marginBottom: "10px" }}>
+          <label style={{ color: "#9B80FD", fontSize: "21px" }}>Country</label>
+          <select
+            name="country"
+            style={inputStyle}
+            required
+            value={Country}
+            onChange={(event) => setCountry(event.target.value)}
+          >
+            <option value="USA">USA</option>
+            <option value="Canada">Canada</option>
+            <option value="UK">UK</option>
+          </select>
+        </div>
+
+        <div style={{ marginBottom: "10px" }}>
+          <label style={{ color: "#9B80FD", fontSize: "21px" }}>State</label>
+          <input
+            name="state"
+            placeholder="State"
+            type="text"
+            style={inputStyle}
+            required
+            value={state}
+            onChange={(event) => setState(event.target.value)}
+          />
+        </div>
+
+      
+
+        <div>
+          <button
+            style={buttonStyle}
+            type="submit"
+            onClick={handleSubmit}
           >
             Checkout
-          </Button>
-        </Form>
-      </div>
+          </button>
+        </div>
     </Modal>
   );
 };
-
-export default CheckoutModal;

@@ -30,7 +30,7 @@ const Footer = () => {
 	}, []);
 
 	return (
-		<footer className="mt-5 sec-padd" id="footer">
+		<footer className="mt-5 sec-padd" id="footer" style={{backgroundColor : "white"}}>
 			<div className="container d-flex flex-wrap">
 				<main className="col-12">
 					<div className="row row-gap-5">
