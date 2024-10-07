@@ -2,9 +2,11 @@ import { CloseOutlined } from "@ant-design/icons";
 import { Modal } from "antd";
 import React , {useContext, useState} from "react";
 import { CartContext } from "../context/CartContext";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../Firebase/firebase";
 export default function CheckoutModal({ isVisible, onClose }) {
   const [paymentMethod, setPaymentMethod] = useState("cash");
-  let {cartItems} = useContext(CartContext)
+  let {cartItems , setCartItems} = useContext(CartContext)
   
 
   const inputStyle = {
@@ -44,10 +46,12 @@ export default function CheckoutModal({ isVisible, onClose }) {
   let [Address1 , setAddress1] = useState('')
   let [Address2 , setAddress2] = useState('')
   let [city , setCity] = useState('')
-  let [Country , setCountry] = useState('')
+  let [Country , setCountry] = useState('USA')
   let [state , setState] = useState('')
-
-  const handleSubmit = (values) => {
+  let [loading , setLoading] = useState(false)
+  
+  const handleSubmit = async (values) => {
+    setLoading(true)
         let CheckOutObj = {
             firstName,
             LastName,
@@ -58,11 +62,22 @@ export default function CheckoutModal({ isVisible, onClose }) {
             city,
             Country,
             state,
-            cartItems
+            cartItems,
+            orderStatus : "pending"
         }
-
         console.log(CheckOutObj);
-  };
+        
+        if (!firstName || !LastName || !phoneNumber || !emailAddress || !Address1 || !Address2 || !city || !Country || !state) {
+          alert("Please Fill All The Fields")
+        } else {
+          const docRef = await addDoc(collection(db, "Orders"), CheckOutObj);
+          console.log("Document written with ID: ", docRef.id);
+          onClose()
+          setCartItems([])
+          localStorage.setItem("")
+        }
+        setLoading(false)
+  }; 
 
   return (
     <Modal
@@ -171,7 +186,11 @@ export default function CheckoutModal({ isVisible, onClose }) {
             style={inputStyle}
             required
             value={Country}
-            onChange={(event) => setCountry(event.target.value)}
+            onChange={(event) => {
+              setCountry(event.target.value)
+              console.log(Country)
+              }
+            }
           >
             <option value="USA">USA</option>
             <option value="Canada">Canada</option>
@@ -200,7 +219,9 @@ export default function CheckoutModal({ isVisible, onClose }) {
             type="submit"
             onClick={handleSubmit}
           >
-            Checkout
+            {
+              loading ? "Processing..." : "CheckOut"
+            }
           </button>
         </div>
     </Modal>

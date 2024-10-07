@@ -83,7 +83,7 @@ import { Modal } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { useForm } from "react-hook-form";
 import { getStorage, ref, uploadBytes, getDownloadURL, uploadBytesResumable } from "firebase/storage";
-import { getFirestore, collection, addDoc } from "firebase/firestore"; // Updated imports
+import { getFirestore, collection, addDoc, doc, setDoc } from "firebase/firestore"; // Updated imports
 import { app } from "../../Firebase/firebase"; // Ensure you initialize the app in firebase.js
 
 const AddProductModal = ({ isVisible, onClose }) => {
@@ -153,15 +153,17 @@ const AddProductModal = ({ isVisible, onClose }) => {
         const collectionRef = collection(firestore, selectedCollection); // Updated Firestore reference
 
         // Add product data to Firestore
-        await addDoc(collectionRef, {
-            title: data.title,
-            slogan: data.slogan,
-            price: data.price,
-            description: data.description,
-            reviews: data.reviews,
-            category: data.category,
-            images: imageUrls, // Add image URLs
-            createdAt: new Date(),
+        const docRef = doc(collectionRef); // Use doc() from Firebase Firestore SDK
+        await setDoc(docRef, {
+          _id: docRef.id,
+          title: data.title,
+          slogan: data.slogan,
+          price: data.price,
+          description: data.description,
+          reviews: data.reviews,
+          category: data.category,
+          images: imageUrls, // Add image URLs
+          createdAt: new Date(),
         });
 
         alert("Product added successfully!");
