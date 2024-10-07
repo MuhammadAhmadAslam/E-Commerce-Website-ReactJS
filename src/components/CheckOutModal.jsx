@@ -4,7 +4,7 @@ import React , {useContext, useState} from "react";
 import { CartContext } from "../context/CartContext";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../Firebase/firebase";
-export default function CheckoutModal({ isVisible, onClose }) {
+export default function CheckoutModal({ isVisible, onClose , calculateTotal }) {
   const [paymentMethod, setPaymentMethod] = useState("cash");
   let {cartItems , setCartItems} = useContext(CartContext)
   
@@ -63,7 +63,8 @@ export default function CheckoutModal({ isVisible, onClose }) {
             Country,
             state,
             cartItems,
-            orderStatus : "pending"
+            orderStatus : "pending",
+            TotalAmount : Number(calculateTotal().toFixed(2))
         }
         console.log(CheckOutObj);
         
@@ -74,7 +75,7 @@ export default function CheckoutModal({ isVisible, onClose }) {
           console.log("Document written with ID: ", docRef.id);
           onClose()
           setCartItems([])
-          localStorage.setItem("")
+          localStorage.setItem("E-Commerce-CartItems" , JSON.stringify([]))
         }
         setLoading(false)
   }; 

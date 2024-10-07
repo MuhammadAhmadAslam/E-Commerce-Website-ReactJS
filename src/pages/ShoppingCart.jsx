@@ -335,7 +335,7 @@ export default function ShoppingCart() {
                  CheckOut
                 </button>
 
-                <CheckoutModal isVisible={isModalVisible} onClose={closeModal} />
+                <CheckoutModal isVisible={isModalVisible} onClose={closeModal} calculateTotal={calculateTotal}/>
                 </div>
               </div>
             </div>
