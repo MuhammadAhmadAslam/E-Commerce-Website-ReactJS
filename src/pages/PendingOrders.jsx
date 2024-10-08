@@ -13,9 +13,9 @@ const PendingOrders = () => {
       console.log(`Pending orders length: ${pendingOrders.length}`);
       pendingOrders.forEach((doc) => {
         arr.push(doc.data())
-      });
+      })
       setOrder(arr)
-    });
+    })
   }
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const PendingOrders = () => {
       </div>
       {
         order.length > 0 ? 
-      <OrderDetail data={order} setOrder={setOrder} />
+      <OrderDetail data={order} setOrder={setOrder} showButton={true} />
       : 
       <div style={{height : "60vh" , display : "flex" , justifyContent : 'center' , alignItems : "center"}}>
         <h1 style={{textAlign: "center" , placeItems : "center"}}>No Order Pending</h1>
