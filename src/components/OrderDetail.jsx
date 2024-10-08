@@ -17,6 +17,7 @@ const OrderDetail = ({ data , showButton , setOrder}) => {
       await updateDoc(docRef, { orderStatus: 'shipped' });
       setOrder((prevOrders) => prevOrders.filter(order => order._id !== productId));
       console.log("Order status updated to 'shipped' for document ID: ", productId);
+      window.location.reload()
     } catch (error) {
       console.error("Error updating document: ", error);
     }
