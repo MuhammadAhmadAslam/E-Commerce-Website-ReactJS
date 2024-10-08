@@ -150,13 +150,13 @@ const AddProductModal = ({ isVisible, onClose }) => {
 
         // Determine collection based on selected category
         const selectedCollection = data.categoryForWebsiteDisplay || "All Products";
-        const collectionRef = collection(firestore, selectedCollection); // Updated Firestore reference
+        const collectionRef = collection(firestore, selectedCollection);    //Updated Firestore reference
 
         // Add product data to Firestore
         const docRef = doc(collectionRef); // Use doc() from Firebase Firestore SDK
         await setDoc(docRef, {
           _id: docRef.id,
-          title: data.title,
+          name: data.title,
           slogan: data.slogan,
           price: data.price,
           description: data.description,

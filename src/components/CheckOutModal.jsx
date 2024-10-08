@@ -2,9 +2,10 @@ import { CloseOutlined } from "@ant-design/icons";
 import { Modal } from "antd";
 import React, { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
-import { addDoc, collection} from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../Firebase/firebase";
 import { doc, setDoc } from "firebase/firestore"; // Make sure to import doc and setDoc
+import Swal from "sweetalert2";
 export default function CheckoutModal({ isVisible, onClose, calculateTotal }) {
   const [paymentMethod, setPaymentMethod] = useState("cash");
   let { cartItems, setCartItems } = useContext(CartContext)
@@ -50,25 +51,25 @@ export default function CheckoutModal({ isVisible, onClose, calculateTotal }) {
   let [Country, setCountry] = useState('USA')
   let [state, setState] = useState('')
   let [loading, setLoading] = useState(false)
+  const [orderPlaced, setOrderPlaced] = useState(false); // new state variable
+  const [errorOccurred, setErrorOccurred] = useState(false); // new state variable
 
 
-  const handleSubmit = async (values) => {
+  const handleSubmit = async () => {
     setLoading(true);
 
-    // Validate required fields
     if (!firstName || !LastName || !phoneNumber || !emailAddress || !Address1 || !Address2 || !city || !Country || !state) {
       alert("Please Fill All The Fields");
       setLoading(false);
       return;
     }
 
-    // Generate a new document reference with a unique ID
-    const newDocRef = doc(collection(db, "Orders"));
-    const uniqueId = newDocRef.id; // This is the generated unique document ID
 
-    // Create the checkout object with the unique ID
+    const newDocRef = doc(collection(db, "Orders"));
+    const uniqueId = newDocRef.id;
+
     let CheckOutObj = {
-      id: uniqueId,  // Add the unique ID to the object
+      id: uniqueId,
       firstName,
       LastName,
       phoneNumber,
@@ -80,175 +81,245 @@ export default function CheckoutModal({ isVisible, onClose, calculateTotal }) {
       state,
       cartItems,
       orderStatus: "pending",
-      TotalAmount: Number(calculateTotal().toFixed(2)) ,
-      date : new Date().toLocaleDateString() ,
+      TotalAmount: Number(calculateTotal().toFixed(2)),
+      date: new Date().toLocaleDateString(),
       time: new Date().toLocaleTimeString()
     };
 
-    console.log(CheckOutObj);
 
     try {
-      // Store the object in Firestore with the unique ID as part of the data
       await setDoc(newDocRef, CheckOutObj);
       console.log("Document written with ID: ", uniqueId);
 
-      // Perform further actions (e.g., closing modal, clearing cart)
       onClose();
       setCartItems([]);
       localStorage.setItem("E-Commerce-CartItems", JSON.stringify([]));
+
+      let existingIds = localStorage.getItem("Order ID");
+      let idsArray;
+
+      if (existingIds) {
+        try {
+          idsArray = JSON.parse(existingIds);
+          if (!Array.isArray(idsArray)) {
+            idsArray = [];
+          }
+        } catch (error) {
+          console.error("Error parsing Order IDs: ", error);
+          idsArray = [];
+        }
+      } else {
+        idsArray = [];
+      }
+
+      idsArray.push(uniqueId);
+
+      localStorage.setItem("Order ID", JSON.stringify(idsArray));
+      console.log(idsArray, "updated Order IDs");
+
+      setOrderPlaced(true);
+      await Swal.fire({
+        title: 'Success!',
+        text: 'Your order has been placed successfully.',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      });
+
+
+
+
     } catch (error) {
       console.error("Error adding document: ", error);
+      setErrorOccurred(true)
+      await Swal.fire({
+        title: 'Ooops!',
+        text: 'Error Occuring During Process Of CheckOut Check Your Internet Connection',
+        icon: 'error',
+        confirmButtonText: 'Close'
+      });
     }
 
     setLoading(false);
   };
 
 
+
+  
   return (
-    <Modal
-      title={<div style={{ textAlign: "center" }}>Checkout</div>}
-      open={isVisible}
-      onCancel={onClose}
-      footer={null}
-      closeIcon={<CloseOutlined style={{ fontSize: "16px" }} />}
-      centered
-    >
-      <div style={{ marginBottom: "10px" }}>
-        <label style={{ color: "#9B80FD", fontSize: "21px" }}>First Name</label>
-        <input
-          name="firstName"
-          placeholder="Your First Name"
-          type="text"
-          style={inputStyle}
-          required
-          onChange={(event) => setFirstName(event.target.value)}
-          value={firstName}
-        />
-      </div>
+    <section>
 
-      <div style={{ marginBottom: "10px" }}>
-        <label style={{ color: "#9B80FD", fontSize: "21px" }}>Last Name</label>
-        <input
-          name="lastName"
-          placeholder="Your Last Name"
-          type="text"
-          style={inputStyle}
-          required
-          value={LastName}
-          onChange={(event) => setLastName(event.target.value)}
-        />
-      </div>
+      <Modal
+        title={<div style={{ textAlign: "center" }}>Checkout</div>}
+        open={isVisible}
+        onCancel={onClose}
+        footer={null}
+        closeIcon={<CloseOutlined style={{ fontSize: "16px" }} />}
+        centered
+      >
+        <div style={{ marginBottom: "10px" }}>
+          <label style={{ color: "#9B80FD", fontSize: "21px" }}>First Name</label>
+          <input
+            name="firstName"
+            placeholder="Your First Name"
+            type="text"
+            style={inputStyle}
+            required
+            onChange={(event) => setFirstName(event.target.value)}
+            value={firstName}
+          />
+        </div>
 
-      <div style={{ marginBottom: "10px" }}>
-        <label style={{ color: "#9B80FD", fontSize: "21px" }}>Phone Number</label>
-        <input
-          name="phoneNumber"
-          placeholder="Phone Number"
-          type="text"
-          style={inputStyle}
-          required
-          value={phoneNumber}
-          onChange={(event) => setPhoneNumber(event.target.value)}
-        />
-      </div>
+        <div style={{ marginBottom: "10px" }}>
+          <label style={{ color: "#9B80FD", fontSize: "21px" }}>Last Name</label>
+          <input
+            name="lastName"
+            placeholder="Your Last Name"
+            type="text"
+            style={inputStyle}
+            required
+            value={LastName}
+            onChange={(event) => setLastName(event.target.value)}
+          />
+        </div>
 
-      <div style={{ marginBottom: "10px" }}>
-        <label style={{ color: "#9B80FD", fontSize: "21px" }}>Email Address</label>
-        <input
-          name="email"
-          placeholder="Email Address"
-          type="email"
-          style={inputStyle}
-          required
-          value={emailAddress}
-          onChange={(event) => setEmailAddress(event.target.value)}
-        />
-      </div>
+        <div style={{ marginBottom: "10px" }}>
+          <label style={{ color: "#9B80FD", fontSize: "21px" }}>Phone Number</label>
+          <input
+            name="phoneNumber"
+            placeholder="Phone Number"
+            type="text"
+            style={inputStyle}
+            required
+            value={phoneNumber}
+            onChange={(event) => setPhoneNumber(event.target.value)}
+          />
+        </div>
 
-      <div style={{ marginBottom: "10px" }}>
-        <label style={{ color: "#9B80FD", fontSize: "21px" }}>Address 1</label>
-        <input
-          name="address1"
-          placeholder="Address 1"
-          type="text"
-          style={inputStyle}
-          required
-          value={Address1}
-          onChange={(event) => setAddress1(event.target.value)}
-        />
-      </div>
+        <div style={{ marginBottom: "10px" }}>
+          <label style={{ color: "#9B80FD", fontSize: "21px" }}>Email Address</label>
+          <input
+            name="email"
+            placeholder="Email Address"
+            type="email"
+            style={inputStyle}
+            required
+            value={emailAddress}
+            onChange={(event) => setEmailAddress(event.target.value)}
+          />
+        </div>
 
-      <div style={{ marginBottom: "10px" }}>
-        <label style={{ color: "#9B80FD", fontSize: "21px" }}>Address 2</label>
-        <input
-          name="address2"
-          placeholder="Address 2"
-          type="text"
-          style={inputStyle}
-          required
-          value={Address2}
-          onChange={(event) => setAddress2(event.target.value)}
-        />
-      </div>
+        <div style={{ marginBottom: "10px" }}>
+          <label style={{ color: "#9B80FD", fontSize: "21px" }}>Address 1</label>
+          <input
+            name="address1"
+            placeholder="Address 1"
+            type="text"
+            style={inputStyle}
+            required
+            value={Address1}
+            onChange={(event) => setAddress1(event.target.value)}
+          />
+        </div>
 
-      <div style={{ marginBottom: "10px" }}>
-        <label style={{ color: "#9B80FD", fontSize: "21px" }}>City</label>
-        <input
-          name="city"
-          placeholder="City"
-          type="text"
-          style={inputStyle}
-          required
-          value={city}
-          onChange={(event) => setCity(event.target.value)}
-        />
-      </div>
+        <div style={{ marginBottom: "10px" }}>
+          <label style={{ color: "#9B80FD", fontSize: "21px" }}>Address 2</label>
+          <input
+            name="address2"
+            placeholder="Address 2"
+            type="text"
+            style={inputStyle}
+            required
+            value={Address2}
+            onChange={(event) => setAddress2(event.target.value)}
+          />
+        </div>
 
-      <div style={{ marginBottom: "10px" }}>
-        <label style={{ color: "#9B80FD", fontSize: "21px" }}>Country</label>
-        <select
-          name="country"
-          style={inputStyle}
-          required
-          value={Country}
-          onChange={(event) => {
-            setCountry(event.target.value)
-            console.log(Country)
-          }
-          }
-        >
-          <option value="USA">USA</option>
-          <option value="Canada">Canada</option>
-          <option value="UK">UK</option>
-        </select>
-      </div>
+        <div style={{ marginBottom: "10px" }}>
+          <label style={{ color: "#9B80FD", fontSize: "21px" }}>City</label>
+          <input
+            name="city"
+            placeholder="City"
+            type="text"
+            style={inputStyle}
+            required
+            value={city}
+            onChange={(event) => setCity(event.target.value)}
+          />
+        </div>
 
-      <div style={{ marginBottom: "10px" }}>
-        <label style={{ color: "#9B80FD", fontSize: "21px" }}>State</label>
-        <input
-          name="state"
-          placeholder="State"
-          type="text"
-          style={inputStyle}
-          required
-          value={state}
-          onChange={(event) => setState(event.target.value)}
-        />
-      </div>
+        <div style={{ marginBottom: "10px" }}>
+          <label style={{ color: "#9B80FD", fontSize: "21px" }}>Country</label>
+          <select
+            name="country"
+            style={inputStyle}
+            required
+            value={Country}
+            onChange={(event) => {
+              setCountry(event.target.value)
+              console.log(Country)
+            }
+            }
+          >
+            <option value="USA">USA</option>
+            <option value="Canada">Canada</option>
+            <option value="UK">UK</option>
+          </select>
+        </div>
+
+        <div style={{ marginBottom: "10px" }}>
+          <label style={{ color: "#9B80FD", fontSize: "21px" }}>State</label>
+          <input
+            name="state"
+            placeholder="State"
+            type="text"
+            style={inputStyle}
+            required
+            value={state}
+            onChange={(event) => setState(event.target.value)}
+          />
+        </div>
 
 
 
-      <div>
-        <button
-          style={buttonStyle}
-          type="submit"
-          onClick={handleSubmit}
-        >
-          {
-            loading ? "Processing..." : "CheckOut"
-          }
-        </button>
-      </div>
-    </Modal>
+        <div>
+          <button
+            style={buttonStyle}
+            type="submit"
+            onClick={handleSubmit}
+          >
+            {
+              loading ? "Processing..." : "CheckOut"
+            }
+          </button>
+        </div>
+      </Modal>
+
+
+      <Modal
+        title={<div style={{ textAlign: "center", marginTop: "40px", fontWeight: "bold", fontSize: "30px" }}>Order Placed Successfully!</div>}
+        open={orderPlaced}
+        onCancel={() => setOrderPlaced(false)}
+        footer={null}
+        closeIcon={<CloseOutlined style={{ fontSize: "26px" }} />}
+        centered
+        style={{ marginBottom: "90px" }}
+      >
+        <p style={{ fontSize: "22px", textAlign: "center" }}>Your order has been placed successfully. Thank you for shopping with us!</p>
+      </Modal>
+
+
+      <Modal
+        title={<div style={{ textAlign: "center", marginTop: "40px", fontWeight: "bold", fontSize: "30px" }}>Error Occured</div>}
+        open={errorOccurred}
+        onCancel={() => setErrorOccurred(false)}
+        footer={null}
+        closeIcon={<CloseOutlined style={{ fontSize: "26px" }} />}
+        centered
+        style={{ marginBottom: "90px" }}
+      >
+        <p style={{ fontSize: "22px", textAlign: "center" }}>Sorry, an error occurred while placing your order. Please Check Your Internet Connection</p>
+      </Modal>
+
+    </section>
   );
 };
