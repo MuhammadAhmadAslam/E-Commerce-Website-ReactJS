@@ -146,6 +146,7 @@ function CartContextProvider({ children }) {
         lessQuanityFromCart,
         removeItemFromCart,
         isItemAdded,
+        setCartItems
       }}
     >
       {children}
