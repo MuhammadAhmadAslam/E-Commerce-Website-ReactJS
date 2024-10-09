@@ -25,7 +25,7 @@ const WebsiteNavbar = ({ cartedProductLength, input, setInput }) => {
 
   return (
     <>
-      <nav className="w-100 bg-black border-bottom z-10">
+      <nav className="w-100 bg-black  z-10">
         <div className="container">
           <div className="d-flex justify-content-between align-items-center py-3">
 

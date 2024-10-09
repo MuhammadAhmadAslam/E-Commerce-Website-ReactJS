@@ -32,6 +32,7 @@ import CompletedOrders from "./pages/CompletedOrders";
 import LatestProduct from "./pages/LatestProduct";
 import TrendingProducts from "./pages/TrendingProducts";
 import Header from "./components/Header";
+import SingleCategoryDetail from "./pages/SingleCategoryDetails";
 
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
 					<Route path="dashboard/admin" element={<Dashboard />} />
 					<Route path="/cart" element={<ShoppingCart />} />
 					<Route path="/products/:productId" element={<ProductDetails />} />
+					<Route path="/product/:productName" element={<SingleCategoryDetail />} />
 					<Route path="*" element={<NotFound />} />
 					<Route path="/dashboard/admin/products" element={<AllProducts />} />
 					<Route path="/dashboard/admin/pending-orders" element={<PendingOrders />} />

@@ -15,8 +15,8 @@ const BestSeller = () => {
 	return (
 		<div className="best-seller py-5">
 			<HeaderDashed
-				head1="BEST"
-				head2="SELLERS"
+				head1="Trending "
+				head2="Products"
 				paragraph="Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio"
 			/>
 			<section>

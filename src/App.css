@@ -631,3 +631,53 @@ nav ul a.active {
      .row{
 	width: 100%;
      }
+
+
+     .containers {
+	max-width: 300px; /* Set your desired card width */
+	margin: 20px auto; /* Center the card */
+   }
+   
+   .glass-effect-card {
+	position: relative;
+	overflow: hidden;
+	border: none;
+	border-radius: 10px; /* Rounded corners */
+	transition: transform 0.3s ease; /* Card hover effect */
+   }
+   
+   .glass-effect-card:hover {
+	transform: scale(1.05); /* Scale effect on hover */
+   }
+   
+   .card-img-top {
+	width: 100%; /* Full width */
+	height: 200px; /* Fixed height */
+	object-fit: cover; /* Ensures the image covers the area without stretching */
+	border-radius: 10px 10px 0 0; /* Rounded corners for image */
+   }
+   
+   .overlay {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	bottom: -20px;
+	background: rgba(255, 255, 255, 0.3); /* Glass effect background */
+	backdrop-filter: blur(10px); /* Blur effect */
+	border-radius: 10px; /* Rounded corners */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #000;
+	transition: top 0.3s ease; /* Transition for sliding effect */
+   }
+   
+   .glass-effect-card:hover .overlay {
+	top: 0px; /* Move overlay up on hover */
+   }
+   
+   .text {
+	padding: 10px; /* Padding for text */
+   }
+   

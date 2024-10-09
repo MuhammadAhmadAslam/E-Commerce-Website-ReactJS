@@ -4,34 +4,47 @@ import Features from "../components/Features";
 import LatestCollections from "../components/LatestCollections";
 import { motion } from "framer-motion";
 import BestSeller from "../components/BestSeller";
+import GlassEffectCard from "../components/GlassEffectCard";
 
 
 
 
 export let ProductCategry = [
 	{
-		Category: "Hat & Caps",
-		subCategory: ["Men's cap", "Women's Caps", "Boys", "Girls",]
+		Category: "Hat&Caps",
+		subCategory: ["Men's cap", "Women's Caps", "Boys", "Girls",],
+		Image: "https://t3.ftcdn.net/jpg/07/21/48/54/360_F_721485494_tStfZlPsB9iWiZSEbOO3vQIaIHJ5SXEl.jpg",
+		path: "product/Hat&Caps"
 	},
 	{
 		Category: "Undergarments",
-		subCategory: [" Mens Undergarments", "Women", "Undergarments", "Boys", "Girls"]
+		subCategory: [" Mens Undergarments", "Women", "Undergarments", "Boys", "Girls"],
+		Image: "https://cdn.notonthehighstreet.com/fs/c1/0e/30de-3cd3-41e6-a21a-7011b66b78f1/original_quotemark0-personalised-underwear.jpg"
+		,path: "product/Undergarments"
 	},
 	{
 		Category: "Fragrances",
-		subCategory: ["perfume for Mens", "Perfume for Women's", "Unisex"]
+		subCategory: ["perfume for Mens", "Perfume for Women's", "Unisex"],
+		Image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWyzzUGw4bWY43NnvVJhpL8-CthRab9vhTMw&s"
+		,path: "product/Fragrances"
 	},
 	{
 		Category: "Watches",
-		subCategory: ["For mens" , "For Womens"]
+		subCategory: ["For mens", "For Womens"],
+		Image: "https://akerfalk.se/cdn/shop/files/Aventyr_black_preeorder.webp?v=1725527012&width=799"
+		,path: "product/Watches"
 	},
 	{
 		Category: "FootWear",
-		subCategory: []
+		subCategory: [],
+		Image: "https://www.shutterstock.com/image-photo/walk-modern-unisex-footwear-sneakers-260nw-2174646593.jpg"
+		,path: 'product/FootWear'
 	},
 	{
 		Category: "Cosmetics",
-		subCategory: []
+		subCategory: [],
+		Image: "https://i.pinimg.com/736x/af/a5/33/afa533c99593187c4798050ccb8148b9.jpg"
+		,path: "product/Cosmetics"
 	},
 ]
 
@@ -85,6 +98,14 @@ const Home = () => {
 
 
 				<BestSeller />
+
+				<div className="row">product
+					{
+						ProductCategry.map((data) => (
+							<GlassEffectCard imageSrc={data.Image} text={data.Category} path={data.path} />
+						))
+					}
+				</div>
 
 				<Features />
 
