@@ -13,7 +13,6 @@ export default function ShoppingCart() {
   let cartedData = Array.isArray(Cartdata) ? [...Cartdata] : [];
   let { setCartItems } = useContext(CartContext);
 
-
   const [isModalVisible, setModalVisible] = useState(false);
 
   const openModal = () => {
@@ -23,6 +22,7 @@ export default function ShoppingCart() {
   const closeModal = () => {
     setModalVisible(false);
   };
+
   function updateQunatity(data, operator) {
     const updatedProduct = { ...data };
 
@@ -41,7 +41,7 @@ export default function ShoppingCart() {
   }
 
   function removeItem(data) {
-    let newFilter = cartedData.filter((product) => product._id != data._id);
+    let newFilter = cartedData.filter((product) => product._id !== data._id);
     localStorage.setItem("E-Commerce-CartItems", JSON.stringify(newFilter));
     setCartItems(newFilter);
   }
@@ -50,57 +50,46 @@ export default function ShoppingCart() {
     return cartedData.reduce((total, product) => total + product.price * product.quantity, 0);
   }
 
+  let [pendingOrders, setPendingOrders] = useState([]);
+  let [activeOrderState, setActiveOrderState] = useState([]);
 
-  let [pendingOrders, setPendingOrders] = useState([])
+  let ordersId = localStorage.getItem("Order ID");
+  let orderIdArray = JSON.parse(ordersId) || [];
 
-  let ordersId = localStorage.getItem("Order ID")
-  let orderIdArray = JSON.parse(ordersId)
-  let activeOrder = []
-  let arr = []
-  let [activeOrderState, setActiveOrderState] = useState([])
+  let activeOrder = [];
+  let arr = [];
+
   let gettingPendingOrder = async () => {
     onSnapshot(collection(db, "Orders"), (snapshot) => {
-      const pendingOrders = snapshot.docs.filter((doc) => doc.data().orderStatus === "pending");
+      const pendingOrders = snapshot.docs.filter(
+        (doc) => doc.data().orderStatus === "pending"
+      );
       console.log(`Pending orders length: ${pendingOrders.length}`);
-      pendingOrders.forEach((doc) => {
-        let d = doc.data()
-        arr.push(d)
-      })
-      setPendingOrders(arr)
-    })
-
-
-
-  }
+      arr = pendingOrders.map((doc) => doc.data());
+      setPendingOrders(arr);
+    });
+  };
 
   useEffect(() => {
-    gettingPendingOrder()
-  }, [])
-
+    gettingPendingOrder();
+  }, []);
 
   let activeUserPendingOrder = () => {
-    if (pendingOrders.length > 0) {
-
-      for (let i = 0; i < pendingOrders.length; i++) {
-        for (let j = 0; j < orderIdArray.length; j++) {
-          if (pendingOrders[i].id == orderIdArray[j]) {
-            activeOrder.push(pendingOrders[i])
-          }
-        }
-        if (activeOrder.length > 0) {
-          setActiveOrderState(activeOrder)
-        }else{
-          setActiveOrderState([])
-        }
-      }
+    if (pendingOrders.length > 0 && orderIdArray.length > 0) {
+      const filteredOrders = pendingOrders.filter((order) =>
+        orderIdArray.includes(order.id)
+      );
+      setActiveOrderState(filteredOrders);
+    } else {
+      setActiveOrderState([]);
     }
-  }
+  };
 
   useEffect(() => {
-    activeUserPendingOrder()
-  }, [pendingOrders])
-  console.log(activeOrderState, "activeOrderState");
+    activeUserPendingOrder();
+  }, [pendingOrders]);
 
+  console.log(activeOrderState, "activeOrderState");
 
   const [isOrderModalVisible, setOrderModalVisible] = useState(false); // State to control modal visibility
 
@@ -111,7 +100,6 @@ export default function ShoppingCart() {
   const closeOrderModal = () => {
     setOrderModalVisible(false); // Close modal
   };
-
 
   return (
     <section className="h-100" style={{ backgroundColor: "#F5F5F5", paddingTop: "60px" }}>
@@ -299,3 +287,6 @@ export default function ShoppingCart() {
     </section>
   );
 }
+
+
+
