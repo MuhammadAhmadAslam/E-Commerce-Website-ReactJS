@@ -39,7 +39,7 @@ const MixedAutoSlider = () => {
 							<span className="fw-bold line-span bg-gray"></span>
 							<span className="fw-bold c-gray">WELCOME</span>
 						</header>
-						<h2 className="playflair-font fs-big my-3 playflair-l-font">
+						<h2 className="playflair-font fs-big my-3 playflair-l-font" >
 							E-COMMERCE
 						</h2>
 						<footer className="d-flex align-items-center gap-2 ">

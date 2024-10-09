@@ -125,26 +125,9 @@ const ProductDetails = () => {
 								{/* Product Description */}
 								<em className="c-gray">{productData.description}</em>
 								{/* Select Size */}
-								<div className="select-size mt-4">
-									<span className="c-gray fw-bold">Select Size</span>
-									<div className="size-btns d-flex gap-2 mt-2">
-										{productData.sizes.map((size, i) => {
-											return (
-												<span
-													className={`d-block px-3 py-2 bg-m-gray border-gray trans-3 ${activeSize == size && "active"
-														}`}
-													role="button"
-													key={i}
-													onClick={() => setActiveSize(size)}
-												>
-													{size}
-												</span>
-											);
-										})}
-									</div>
-								</div>
+								<br />
 								{/* Add to Cart Button */}
-								<button onClick={() => addItemToCart(productData)} disabled={ isItemAdded(productData._id) ? true : false}  className="addcart-btn btn rounded-0 bg-black c-white mt-4 trans-3 mb-2 py-2 px-4">
+								<button onClick={() => addItemToCart(productData)} disabled={ isItemAdded(productData._id) ? true : false}  className="addcart-btn btn rounded-0 bg-black  c-white mt-4 trans-3 mb-2 py-2 px-4" style={{color: "linear-gradient(270deg, #fff09e, #c3812a, #fff09e, #c3812a)"  , cursor:"pointer"}}>
 									{
 										isItemAdded(productData._id) ? "Added" : "Add To Cart"
 									}

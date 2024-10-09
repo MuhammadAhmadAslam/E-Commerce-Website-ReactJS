@@ -14,10 +14,10 @@ const WebsiteNavbar = ({ cartedProductLength, input, setInput }) => {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [searchVisible, setSearchVisible] = useState(false);
 
- 
-  let {cartItems}  = useContext(CartContext)
-  
-  
+
+  let { cartItems } = useContext(CartContext)
+
+
   const toggleDrawer = () => setDrawerVisible(!drawerVisible);
 
 
@@ -25,28 +25,33 @@ const WebsiteNavbar = ({ cartedProductLength, input, setInput }) => {
 
   return (
     <>
-      <nav className="w-100 bg-white border-bottom z-10">
+      <nav className="w-100 bg-black border-bottom z-10">
         <div className="container">
           <div className="d-flex justify-content-between align-items-center py-3">
 
             {/* Logo */}
-            <Link to={'/'} className="d-flex align-items-center" style={{ textDecoration: "none" , color : "#f5f5f5"}}>
-              <span className="text-lg font-bold ml-2" style={{color : "#9B80FD"}}>E-Commerce Website</span>
+            <Link to={'/'} className="d-flex align-items-center" style={{ textDecoration: "none", color: "#f5f5f5" }}>
+              <span className="text-lg font-bold ml-2" style={{ color: "#ffff" }}>E-Commerce Website</span>
             </Link>
 
             {/* Center menu for large screens */}
             <div className="d-none d-md-flex flex-nowrap">
-              <Link to="/" className="nav-link-hover mx-3 hover:text-black transition duration-300" style={{ textDecoration: "none", fontSize: "15px" , color: "#0D6DB7"}}>Home</Link>
-              <Link to="/collection" className="nav-link-hover mx-3 hover:text-black transition duration-300" style={{ textDecoration: "none", fontSize: "15px" , color: "#0D6DB7"}}>Shop</Link>
-              <Link to="/about" className="nav-link-hover mx-3 hover:text-black transition duration-300" style={{ textDecoration: "none", fontSize: "15px" , color: "#0D6DB7"}}>About</Link>
-              <Link to="/contact" className="nav-link-hover mx-3 hover:text-black transition duration-300" style={{ textDecoration: "none", fontSize: "15px" , color: "#0D6DB7"}}>Contact</Link>
+              <Link to="/" className="nav-link-hover mx-3 hover:text-black transition duration-300" style={{ textDecoration: "none", fontSize: "15px", color: "#fff" , paddingBottom: "5px"}}>Home</Link>
+              <Link to="/collection" className="nav-link-hover mx-3 hover:text-black transition duration-300" style={{ textDecoration: "none", fontSize: "15px", color: "#fff" , paddingBottom: "5px"}}>Shop</Link>
+              <Link to="/about" className="nav-link-hover mx-3 hover:text-black transition duration-300" style={{ textDecoration: "none", fontSize: "15px", color: "#fff" , paddingBottom: "5px"}}>About</Link>
+              <Link to="/contact" className="nav-link-hover mx-3 hover:text-black transition duration-300" style={{ textDecoration: "none", fontSize: "15px", color: "#fff", paddingBottom: "5px" }}>Contact</Link>
             </div>
 
             {/* Icons on the right for large screens */}
             <div className="d-none d-md-flex align-items-center gap-2">
               <Link to={'/cart'}>
-                <Badge count={cartItems.length}>
-                  <ShoppingCartOutlined className="cursor-pointer text-black" style={{ fontSize: '30px' , color : "#9B80FD" }} />
+                <Badge count={cartItems.length} style={{
+                  backgroundColor: "black",
+                  color: "goldenrod",
+                  fontWeight: "bold",
+                  fontSize: "15px"
+                }}>
+                  <ShoppingCartOutlined className="cursor-pointer text-white" style={{ fontSize: '30px', color: "white" }} />
                 </Badge>
               </Link>
 
@@ -80,11 +85,16 @@ const WebsiteNavbar = ({ cartedProductLength, input, setInput }) => {
                 <SearchOutlined className="text-xl cursor-pointer text-black" onClick={toggleSearch} />
               )} */}
               <Link to={'/cart'}>
-                <Badge count={cartItems.length}>
-                  <ShoppingCartOutlined className="cursor-pointer " style={{fontSize : "20px"  , color : "#9B80FD" , marginRight: "5px"}} />
+                <Badge count={cartItems.length} style={{
+                  backgroundColor: "black",
+                  color: "goldenrod",
+                  fontWeight: "bold",
+                  fontSize: "15px"
+                }} >
+                  <ShoppingCartOutlined className="cursor-pointer " style={{ fontSize: "20px", color: "#fff", marginRight: "5px" }} />
                 </Badge>
               </Link>
-              <MenuOutlined className="text-xl cursor-pointer" style={{color : "#0D6DB7"}}  onClick={toggleDrawer} />
+              <MenuOutlined className="text-xl cursor-pointer" style={{ color: "#fff" }} onClick={toggleDrawer} />
             </div>
           </div>
         </div>
@@ -96,13 +106,13 @@ const WebsiteNavbar = ({ cartedProductLength, input, setInput }) => {
           closable={true}
           onClose={toggleDrawer}
           visible={drawerVisible}
-          closeIcon={<CloseOutlined style={{color : "#0D6DB7"}} />}
+          closeIcon={<CloseOutlined style={{ color: "#000" }} />}
         >
           <div className="d-flex flex-column">
-            <Link to="/" className="nav-link-hover mx-3" style={{ textDecoration: "none", fontSize: "29px" , color: "#0D6DB7"}}>Home</Link>
-            <Link to="/collection" className="nav-link-hover mx-3" style={{ textDecoration: "none", fontSize: "29px" , color: "#0D6DB7"}}>Shop</Link>
-            <Link to="/about" className="nav-link-hover mx-3" style={{ textDecoration: "none", fontSize: "29px" , color: "#0D6DB7"}}>About</Link>
-            <Link to="/contact" className="nav-link-hover mx-3" style={{ textDecoration: "none", fontSize: "29px" , color: "#0D6DB7"}}>Contact</Link>
+            <Link to="/" className="nav-link-hovers mx-3" style={{ textDecoration: "none", fontSize: "29px", color: "#000" }}>Home</Link>
+            <Link to="/collection" className="nav-link-hovers mx-3" style={{ textDecoration: "none", fontSize: "29px", color: "#000" }}>Shop</Link>
+            <Link to="/about" className="nav-link-hovers mx-3" style={{ textDecoration: "none", fontSize: "29px", color: "#000" }}>About</Link>
+            <Link to="/contact" className="nav-link-hovers mx-3" style={{ textDecoration: "none", fontSize: "29px", color: "#000" }}>Contact</Link>
           </div>
         </Drawer>
 
@@ -118,7 +128,7 @@ const WebsiteNavbar = ({ cartedProductLength, input, setInput }) => {
             />
           </div>
         )} */}
-      </nav>
+      </nav >
 
       {/* Carousel section - This will be under the search bar */}
     </>

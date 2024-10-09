@@ -31,6 +31,7 @@ import PendingOrders from "./pages/PendingOrders";
 import CompletedOrders from "./pages/CompletedOrders";
 import LatestProduct from "./pages/LatestProduct";
 import TrendingProducts from "./pages/TrendingProducts";
+import Header from "./components/Header";
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
 
 	return (
 		<div className="App">
+		<Header />
 			<Navbar />
 			{activeSearch && <SearchBar />}
 			
