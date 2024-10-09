@@ -86,7 +86,7 @@ export default function Dashboard() {
   } , [])
 
   return (
-    <div className="row g-4 d-flex justify-content-center align-items-center mt-5" style={{display : "flex" , justifyContent : "center", alignItems : "center"}}>
+    <div className="row g-4 d-flex justify-content-center align-items-center mt-5" style={{display : "flex" , justifyContent : "center", alignItems : "center" ,marginBottom: "280px"}}>
       <Link to={"/dashboard/admin/products"}  className="col-md-4 col-sm-6" style={{textDecoration: "none"}}>
         <div className="bg-primary text-white p-4 rounded shadow">
           <h2 className="display-4">{allProductLength}</h2>

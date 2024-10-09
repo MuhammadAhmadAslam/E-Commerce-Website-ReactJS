@@ -8,7 +8,32 @@ import BestSeller from "../components/BestSeller";
 
 
 
-
+export let ProductCategry = [
+	{
+		Category: "Hat & Caps",
+		subCategory: ["Men's cap", "Women's Caps", "Boys", "Girls",]
+	},
+	{
+		Category: "Undergarments",
+		subCategory: [" Mens Undergarments", "Women", "Undergarments", "Boys", "Girls"]
+	},
+	{
+		Category: "Fragrances",
+		subCategory: ["perfume for Mens", "Perfume for Women's", "Unisex"]
+	},
+	{
+		Category: "Watches",
+		subCategory: ["For mens" , "For Womens"]
+	},
+	{
+		Category: "FootWear",
+		subCategory: []
+	},
+	{
+		Category: "Cosmetics",
+		subCategory: []
+	},
+]
 
 
 // Dummy Fixed Data:
@@ -16,12 +41,12 @@ import BestSeller from "../components/BestSeller";
 
 
 const Home = () => {
-	
-	
+
+
 	// const [loading, setLoading] = useState(true);
 	// const [errorInFetch, setErrorInFetch] = useState(null);
 	// const [data, setData] = useState([]);
-	
+
 
 
 
@@ -33,7 +58,7 @@ const Home = () => {
 	// 	// 	.then((res) => res.json())
 	// 	// 	.then((json) => {
 	// 	// 		console.log('from github server', json);
-				
+
 	// 	// 		setData(json);
 	// 	// 		setLoading(false);
 	// 	// 	})
@@ -53,12 +78,14 @@ const Home = () => {
 			className="home-page text-center"
 		>
 			<div className="container">
-				<MixedAutoSlider  />
+				<MixedAutoSlider />
 
-				<LatestCollections/>
-				
+				<LatestCollections />
+
+
+
 				<BestSeller />
-				
+
 				<Features />
 
 				<SubscriptionForm />
