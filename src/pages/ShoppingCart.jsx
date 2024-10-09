@@ -87,7 +87,11 @@ export default function ShoppingCart() {
             activeOrder.push(pendingOrders[i])
           }
         }
-        setActiveOrderState(activeOrder)
+        if (activeOrder.length > 0) {
+          setActiveOrderState(activeOrder)
+        }else{
+          setActiveOrderState([])
+        }
       }
     }
   }
