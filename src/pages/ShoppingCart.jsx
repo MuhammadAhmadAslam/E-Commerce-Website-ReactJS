@@ -165,7 +165,7 @@ export default function ShoppingCart() {
                 {/* Product Info */}
                 <div className="d-flex align-items-center mb-2" style={{ flexWrap: "wrap" }}>
                   <div className="image-div" style={{ marginRight: "15px" }}>
-                    <Image style={{ width: "60px", height: "auto", objectFit: "cover", borderRadius: "8px" }} src={data.image[0]} />
+                    <Image style={{ width: "60px", height: "auto", objectFit: "cover", borderRadius: "8px" }} src={data.images[0]} />
                   </div>
                   <div className="d-flex flex-column" style={{ flexGrow: 1 }}>
                     <p className="mb-1 fw-bold text-primary">{data.name}</p>

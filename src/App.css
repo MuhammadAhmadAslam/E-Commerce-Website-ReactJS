@@ -634,7 +634,7 @@ nav ul a.active {
 
 
      .containers {
-	max-width: 300px; /* Set your desired card width */
+	/* max-width: 300px; Set your desired card width */
 	margin: 20px auto; /* Center the card */
    }
    

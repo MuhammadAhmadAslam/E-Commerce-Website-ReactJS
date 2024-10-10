@@ -27,7 +27,11 @@ const PendingOrders = () => {
   
   return (
     <section>
-      <div style={{display : "flex" , justifyContent: "center" , alignItems : "center" , flexDirection : "column" , fontSize : "30px" , marginTop : "70px"}}>
+      <div style={{display : "flex" , justifyContent: "center" , alignItems : "center" , flexDirection : "column" , fontSize : "30px" , marginTop : "70px",
+					WebkitTextFillColor: "transparent",
+					backgroundImage: "linear-gradient(270deg, #fff09e, #c3812a, #fff09e, #c3812a)",
+					WebkitBackgroundClip: "text",
+					backgroundClip: "text"}}>
       PendingOrders
       </div>
       {

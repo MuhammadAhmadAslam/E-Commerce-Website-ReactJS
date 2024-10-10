@@ -24,7 +24,11 @@ let [data , setData] = useState([])
   
   return (
     <section style={{minHeight : "70vh"}}>
-    <div style={{marginTop : "60px" , fontSize: "30px" , textAlign : "center"}}>Trending Products</div>
+    <div style={{marginTop : "60px" , fontSize: "30px" , textAlign : "center" ,
+					WebkitTextFillColor: "transparent",
+					backgroundImage: "linear-gradient(270deg, #fff09e, #c3812a, #fff09e, #c3812a)",
+					WebkitBackgroundClip: "text",
+					backgroundClip: "text"}}>Trending Products</div>
     <Tables data={data} setData={setData}  name={"Trending Products"}/>
     </section>
   )

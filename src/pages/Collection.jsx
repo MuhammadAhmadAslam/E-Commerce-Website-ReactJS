@@ -3,17 +3,19 @@ import { useContext, useEffect, useState } from "react";
 import FiltersSidebar from "../components/FiltersSidebar";
 import AllCollections from "../components/AllCollections";
 import { ShopContext } from "../context/ShopContext";
+import { collection, onSnapshot } from "firebase/firestore";
+import { db } from "../../Firebase/firebase";
 
 // Dummy Fixed Data:
 // import productsData from "../components/FixedData";
 
 const Collection = () => {
-	const {productsData, search} = useContext(ShopContext)
+	const { productsData, search } = useContext(ShopContext)
 	// State to store filtered data based on user selection
 	const [filteredData, setFilteredData] = useState([]);
 
 	// Function to filter products based on categories and types
-	const filterByData = ({categories, types}) => {
+	const filterByData = ({ categories, types }) => {
 		let newData = [...productsData];
 		if (search !== '') {
 			newData = newData.filter(el => el.name.toLowerCase().includes(search.toLowerCase()))
@@ -31,21 +33,21 @@ const Collection = () => {
 		console.log(newData);
 	}
 
+	let arr = []
+	let [data, setData] = useState([])
 
-	// Fetch data on component mount
+	let gettingData = async () => {
+		onSnapshot(collection(db, "All Products"), (snapshot) => {
+			snapshot.forEach((doc) => {
+				console.log(doc.data());
+				arr.push(doc.data())
+			});
+			setData(arr)
+		});
+	}
 	useEffect(() => {
-		// fetch("https://ahmed-maher77.github.io/Forever__Modern-E-Commerce-Web-Application-with-ReactJS-and-Bootstrap/db.json")
-		// 	.then((res) => res.json())
-		// 	.then((json) => {
-		// 		setData(json);              // Store fetched data
-		// 		setLoading(false);          // Stop loading once data is fetched
-		// 	}).catch(error => {
-		// 		setErrorInFetch(error);     // Handle any errors in fetching
-		// 		setLoading(false);          // Stop loading even if there's an error
-		// 	})
-		// setData(productsData);
-		// setLoading(false);
-	}, []);
+		gettingData()
+	}, [])
 
 
 
@@ -60,17 +62,17 @@ const Collection = () => {
 			<div className="container">
 				<div className="row row-gap-4">
 					{/* Sidebar with filters */}
-					<FiltersSidebar filterByData={filterByData} />
+					{/* <FiltersSidebar filterByData={filterByData} /> */}
 
 					{/* Display all collections with the fetched data */}
-					<div className="col-12 col-md-8 col-lg-9 col-xxl-10 position-relative">
-					{
-						filteredData.length?
-						<AllCollections data={filteredData} />
-						:
-						<p className="nomatch-msg position-absolute top-50 start-50 fs-3 text-center">There are no data match your choice 🙄</p>
-					}
-						
+					<div className="col-12 col-md-8 col-lg-9 col-xxl-10 position-relative" style={{minHeight:"70vh"}}>
+						{
+							data.length ?
+								<AllCollections data={data} />
+								:
+								<p className="nomatch-msg position-absolute top-50 start-50 fs-3 text-center">There are no data match your choice 🙄</p>
+						}
+
 					</div>
 					{/* <AllCollections data={data} loading={loading} errorInFetch={errorInFetch} /> */}
 				</div>

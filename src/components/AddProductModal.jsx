@@ -447,9 +447,10 @@ const AddProductModal = ({ isVisible, onClose }) => {
         category: category,
         images: imageUrls, // Add image URLs
         createdAt: new Date().toLocaleDateString(),
+        collectionName: categoryForWebsiteDisplay
       });
       await setDoc(docRef2, {
-        _id: docRef.id,
+        _id: docRef2.id,
         name: title,
         slogan: slogan,
         price: price,
@@ -458,6 +459,7 @@ const AddProductModal = ({ isVisible, onClose }) => {
         category: category,
         images: imageUrls, // Add image URLs
         createdAt: new Date().toLocaleDateString(),
+        collectionName: category
       });
 
       // const docRef = await addDoc(collection(firestore, selectedCollection), {

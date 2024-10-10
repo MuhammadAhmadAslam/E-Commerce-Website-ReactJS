@@ -63,7 +63,7 @@ const OrderDetail = ({ data , showButton , setOrder}) => {
                      showButton ? 
                 <button 
                   onClick={() => setShipped(product._id || product.id)}  // Use the correct key for product ID
-                  style={{ width: "190px", backgroundColor: "blue", color: "white", border: "none", marginTop: "20px", marginBottom: "20px" }}
+                  style={{ width: "190px", backgroundColor: "goldenrod", color: "white", height: "50px"  ,  border: "none", marginTop: "20px", marginBottom: "20px" }}
                 >
                   Mark As Shipped
                 </button>

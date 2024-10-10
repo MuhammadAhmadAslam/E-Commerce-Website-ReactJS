@@ -26,7 +26,7 @@ const SubscriptionForm = () => {
 					<input
 						type="email"
 						className="col-8 col-sm-9 px-3 border-gray outline-0"
-						placeholder="enter your email"
+						placeholder="Enter Your Email"
 						onChange={(e) => setEmailValue(e.target.value)}
 						value={emailValue}
 						required

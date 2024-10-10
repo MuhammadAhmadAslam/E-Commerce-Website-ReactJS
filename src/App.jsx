@@ -63,7 +63,7 @@ function App() {
 					<Route path="/admin-panel" element={<AdminPanel />} />
 					<Route path="dashboard/admin" element={<Dashboard />} />
 					<Route path="/cart" element={<ShoppingCart />} />
-					<Route path="/products/:productId" element={<ProductDetails />} />
+					<Route path="/products/:productId/:collectionName" element={<ProductDetails />} />
 					<Route path="/product/:productName" element={<SingleCategoryDetail />} />
 					<Route path="*" element={<NotFound />} />
 					<Route path="/dashboard/admin/products" element={<AllProducts />} />
