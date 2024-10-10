@@ -79,8 +79,8 @@ const BestSeller = () => {
                 <div className="row justify-content-center">
                     {productsData.length > 0 ? (
                         productsData.map((product) => (
-                            <div key={product.id} className="col-6 col-md-4 col-lg-3 col-xl mt-3" style={{maxWidth: '350px'}}>
-                                <CollectionCard data={product} classPadding="px-0" />
+                            <div key={product.id} className="col-6 col-md-4 col-lg-3 col-xl mt-3">
+                                <CollectionCard data={product} classPadding="px-3" />
                             </div>
                         ))
                     ) : (
