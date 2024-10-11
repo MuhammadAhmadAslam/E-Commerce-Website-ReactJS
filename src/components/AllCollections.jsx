@@ -38,7 +38,9 @@ const AllCollections = ({ data }) => {
 	return (
 		<section id="all-collections" style={{width:"100%"}}>
 			<header className="d-flex justify-content-between align-items-center" style={{width:"100%"}}>
+			<div style={{paddingLeft: "30px"}}>
 				<HeaderDashed head1="ALL" head2="COLLECTIONS" />
+			</div>
 				
 				{/* Sorting options dropdown */}
 				{/* <select
@@ -59,7 +61,7 @@ const AllCollections = ({ data }) => {
 					)                 
 					: (
 						data.map((product, i) => (
-							<div className="col-6 col-lg-4 col-xl-3" key={i}>
+							<div className="col-12 col-md-4 col-sm-6 col-lg-4 col-xl-3" key={i}>
 								<CollectionCard data={product} />
 							</div>
 						))
