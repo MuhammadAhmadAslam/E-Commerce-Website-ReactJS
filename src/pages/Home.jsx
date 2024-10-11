@@ -99,7 +99,7 @@ const Home = () => {
 				<section style={{marginBottom : "50px", marginTop:"150px"}}>
 					<HeaderDashed head1="All"
 						head2="Categories"
-						paragraph="Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio" />
+						paragraph="Style, Comfort, and Quality – All in One Place" />
 					<div className="row">
 						{
 							ProductCategry.map((data) => (

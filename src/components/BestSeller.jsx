@@ -73,7 +73,7 @@ const BestSeller = () => {
             <HeaderDashed
                 head1="Trending "
                 head2="Products"
-                paragraph="Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio"
+                paragraph="Where Fashion Meets Function – Shop the Latest Trends"
             />
             <section>
                 <div className="row justify-content-center">

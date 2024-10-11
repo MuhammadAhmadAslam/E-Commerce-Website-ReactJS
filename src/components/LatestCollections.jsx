@@ -89,7 +89,7 @@ const LatestCollections = () => {
             <HeaderDashed
                 head1="LATEST"
                 head2="COLLECTIONS"
-                paragraph="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the."
+                paragraph="Discover the Newest Trends and Timeless Classics"
             />
             <main className="d-flex row-gap-3 flex-wrap mt-5" style={{justifyContent: "center" , alignItems: "center"}}>
                 {/* Conditional rendering based on data */}
