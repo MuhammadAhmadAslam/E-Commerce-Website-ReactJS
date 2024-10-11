@@ -72,7 +72,7 @@ export default function ShoppingCart() {
 
   useEffect(() => {
     gettingPendingOrder();
-  }, []);
+  }, [openModal , closeModal]);
 
   let activeUserPendingOrder = () => {
     if (pendingOrders.length > 0 && orderIdArray.length > 0) {
