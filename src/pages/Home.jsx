@@ -56,7 +56,6 @@ export let ProductCategry = [
 
 const Home = () => {
 
-localStorage.clear()
 	// const [loading, setLoading] = useState(true);
 	// const [errorInFetch, setErrorInFetch] = useState(null);
 	// const [data, setData] = useState([]);
