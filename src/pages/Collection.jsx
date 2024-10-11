@@ -57,15 +57,16 @@ const Collection = () => {
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			exit={{ opacity: 0 }}
-			className="collection-page py-3 pt-405"
+			className="collection-page  pt-405"
+			style={{width : "100%"}}
 		>
-			<div className="container">
-				<div className="row row-gap-4">
+			<div>
+				<div style={{width: "100%"}} className="div-hae">
 					{/* Sidebar with filters */}
 					{/* <FiltersSidebar filterByData={filterByData} /> */}
 
 					{/* Display all collections with the fetched data */}
-					<div className="col-12 col-md-8 col-lg-9 col-xxl-10 position-relative" style={{minHeight:"70vh"}}>
+					<div className="col-12 col-md-8 col-lg-9 col-xxl-10 position-relative" style={{minHeight:"70vh" , width: "100%"}}>
 						{
 							data.length ?
 								<AllCollections data={data} />

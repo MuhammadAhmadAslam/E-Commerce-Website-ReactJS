@@ -360,7 +360,10 @@ nav ul a.active {
 	rotate: 90deg;
 }
 .collection-page .nomatch-msg {
-	translate: -50% -50%;
+	translate: -50% -30%;
+}
+.div-hae{
+	padding: 60px;
 }
 .collection-page .filters-sidebar label:hover,
 .collection-page .filters-sidebar input:checked + label {
@@ -626,6 +629,9 @@ nav ul a.active {
 	.cart-card{
 		width: 100% !important;
 		margin: 0px;
+	}
+	.div-hae{
+		padding: 0;
 	}
      }
      .row{

@@ -26,8 +26,8 @@ const CollectionCard = ({ data: { _id, images, name, price, collectionName }, cl
 				/>
 			</figure>
 			<article className="card-body text-start p-0">
-				<h4 className="card-title fs-6 c-gray fw-normal" style={{ color: "#0D6DB7" }}>{name}</h4>
-				<div className="price fw-bold fs-small c-d-gray">{price}{currency}</div>
+				<h4 className="card-title fs-6 c-gray fw-normal" style={{ color: "#0D6DB7" , paddingLeft: "10px"}}>{name}</h4>
+				<div className="price fw-bold fs-small c-d-gray" style={{paddingLeft: "10px"}}>{price}{currency}</div>
 			</article>
 		</Link>
 	);
