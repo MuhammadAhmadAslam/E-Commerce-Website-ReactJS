@@ -9,7 +9,6 @@ import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../Firebase/firebase";
 
 export default function ShoppingCart() {
-  localStorage.clear()
   let Cartdata = JSON.parse(localStorage.getItem("E-Commerce-CartItems")) || [];
   let cartedData = Array.isArray(Cartdata) ? [...Cartdata] : [];
   let { setCartItems } = useContext(CartContext);
