@@ -4,10 +4,10 @@ import { ShopContext } from "../context/ShopContext";
 import { Image } from "antd";
 
 
-const CollectionCard = ({data: { _id, images, name, price , collectionName}, classPadding}) => {
+const CollectionCard = ({ data: { _id, images, name, price, collectionName }, classPadding }) => {
 	const navigate = useNavigate();   // Hook to programmatically navigate to product details
-	const {currency} = useContext(ShopContext)
-	
+	const { currency } = useContext(ShopContext)
+
 
 	return (
 		<Link
@@ -15,17 +15,18 @@ const CollectionCard = ({data: { _id, images, name, price , collectionName}, cla
 			to={`/products/${_id}/${collectionName}`}
 			onClick={() => navigate(`/products/${_id}/${collectionName}`)}                // Navigate to product details on click
 			data-aos={"fade-up"}
-			style={{color : "#0D6DB7" , textDecoration: "none" , height: "200px"}}
+			style={{ color: "#0D6DB7", textDecoration: "none", height: "300px", marginBottom: "15px" }}
 		>
-			<figure className="overflow-hidden rounded">
+			<figure className="overflow-hidden rounded" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
 				<Image
-					src={images[0]}    
+					src={images[0]}
 					alt={name}
-					className="card-img rounded mx-h-300 trans-3 img-scall"
+					className="card-img rounded  trans-3 img-scall"
+					style={{ height: "200px" }}
 				/>
 			</figure>
 			<article className="card-body text-start p-0">
-				<h4 className="card-title fs-6 c-gray fw-normal" style={{color : "#0D6DB7"}}>{name}</h4>
+				<h4 className="card-title fs-6 c-gray fw-normal" style={{ color: "#0D6DB7" }}>{name}</h4>
 				<div className="price fw-bold fs-small c-d-gray">{price}{currency}</div>
 			</article>
 		</Link>

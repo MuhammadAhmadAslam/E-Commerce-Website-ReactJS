@@ -265,7 +265,7 @@ const ProductDetails = () => {
 		return <FetchWaitingMsg />;
 	}
 
-	let random = Math.floor(Math.random() * 6);
+	let random = 5;
 
 	return (
 

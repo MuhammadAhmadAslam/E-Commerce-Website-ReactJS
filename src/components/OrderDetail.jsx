@@ -1,6 +1,7 @@
 import React from 'react';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../Firebase/firebase';
+import Swal from 'sweetalert2';
 
 const OrderDetail = ({ data , showButton , setOrder}) => {
   console.log(showButton);
@@ -18,6 +19,13 @@ const OrderDetail = ({ data , showButton , setOrder}) => {
       setOrder((prevOrders) => prevOrders.filter(order => order._id !== productId));
       console.log("Order status updated to 'shipped' for document ID: ", productId);
       window.location.reload()
+      await Swal.fire({
+        title: 'Success!',
+        text: 'Your Order Marked As Shipped.',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      });
+
     } catch (error) {
       console.error("Error updating document: ", error);
     }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { doc, deleteDoc, onSnapshot, collection } from "firebase/firestore";
 import { db } from '../../Firebase/firebase';
+import Swal from 'sweetalert2';
 
 const Tables = ({ data, setData, name }) => {
 
@@ -16,6 +17,13 @@ const Tables = ({ data, setData, name }) => {
 
   async function deleteProduct(_id) {
     await deleteDoc(doc(db, name, _id));
+    await Swal.fire({
+      title: 'Success!',
+      text: 'Your Product Has Been Deleted SuccessFully.',
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });
+
   }
   return (
     <div className="p-4">
