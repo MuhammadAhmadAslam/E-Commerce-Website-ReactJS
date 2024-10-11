@@ -680,4 +680,17 @@ nav ul a.active {
    .text {
 	padding: 10px; /* Padding for text */
    }
+   @media screen and (min-width: 0px)and (max-width: 700px) {
+		.header-icons{
+			font-size: 16px !important;
+		}
+		.icon-div{
+			gap: 2px !important;
+		}
+		header{
+			padding-top: 6px !important;
+			height: 40px !important;
+			padding: 0px;
+		}
+   }
    

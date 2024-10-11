@@ -15,12 +15,12 @@ const Header = () => {
                 paddingTop: "20px"
               }}
             >
-              <div className="container" style={{display:"flex" , justifyContent: "end" , gap: "10px"}}>
+              <div className="container icon-div" style={{display:"flex" , justifyContent: "end" , gap: "10px"}}>
               <a
 										href="#"
 										target="_blank"
 										title="Go To Facebook"
-										className=""
+										className="header-icons"
 										style={{
 											color: "#1877F2",
 											textDecoration: "none",
@@ -35,6 +35,7 @@ const Header = () => {
 										href="#"
 										target="_blank"
 										title="Go To Instagram"
+										className='header-icons'
 										style={{
 											textDecoration: "none",
 											paddingBottom: "10px",
@@ -56,7 +57,7 @@ const Header = () => {
 										href="#"
 										target="_blank"
 										title="Go To Twiiter"
-										className=""
+										className="header-icons"
 										style={{
 											color: "white",
 											textDecoration: "none",
