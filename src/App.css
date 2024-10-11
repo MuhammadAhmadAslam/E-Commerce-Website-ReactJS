@@ -687,7 +687,7 @@ nav ul a.active {
 		.icon-div{
 			gap: 2px !important;
 		}
-		header{
+		.headers{
 			padding-top: 6px !important;
 			height: 40px !important;
 			padding: 0px;

@@ -5,6 +5,7 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 const Header = () => {
        return (
               <header
+		className='headers'
               style={{
                 backgroundColor: "black",
                 display: "flex",
