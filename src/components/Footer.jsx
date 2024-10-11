@@ -49,10 +49,7 @@ const Footer = () => {
 								</h3>
 							</Link>
 							<p className="mt-3">
-								Lorem Ipsum is simply dummy text of the printing and typesetting
-								industry. Lorem Ipsum has been the industry&apos;s standard
-								dummy text ever since the 1500s, when an unknown printer took a
-								galley of type and scrambled it to make a type specimen book.
+							At Our Store, we believe in providing high-quality products that enhance your lifestyle. From fragrance to footwear, we’ve got you covered. Stay stylish, stay confident!
 							</p>
 						</article>
 
