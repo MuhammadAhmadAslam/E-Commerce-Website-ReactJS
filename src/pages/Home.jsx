@@ -56,33 +56,6 @@ export let ProductCategry = [
 
 const Home = () => {
 
-	// const [loading, setLoading] = useState(true);
-	// const [errorInFetch, setErrorInFetch] = useState(null);
-	// const [data, setData] = useState([]);
-
-
-
-
-
-
-	// Fetch data for collections
-	// useEffect(() => {
-	// 	// fetch("https://ahmed-maher77.github.io/Forever__Modern-E-Commerce-Web-Application-with-ReactJS-and-Bootstrap/db.json/products")      // http://localhost:3000/products
-	// 	// 	.then((res) => res.json())
-	// 	// 	.then((json) => {
-	// 	// 		console.log('from github server', json);
-
-	// 	// 		setData(json);
-	// 	// 		setLoading(false);
-	// 	// 	})
-	// 	// 	.catch((error) => {
-	// 	// 		setErrorInFetch(error);
-	// 	// 		setLoading(false);
-	// 	// 	});
-	// 	setData(productsData);
-	// 	setLoading(false);
-	// }, []);
-
 	return (
 		<motion.section
 			initial={{ opacity: 0 }}
