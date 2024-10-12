@@ -488,6 +488,7 @@ const AddProductModal = ({ isVisible, onClose }) => {
 
     } catch (error) {
       console.error("Error adding product:", error);
+      window.location.reload()
       alert("There was an error adding the product. Please try again.");
     } finally {
       setLoading(false);
