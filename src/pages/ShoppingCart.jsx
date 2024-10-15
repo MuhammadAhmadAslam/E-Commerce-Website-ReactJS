@@ -64,7 +64,6 @@ export default function ShoppingCart() {
       const pendingOrders = snapshot.docs.filter(
         (doc) => doc.data().orderStatus === "pending"
       );
-      console.log(`Pending orders length: ${pendingOrders.length}`);
       arr = pendingOrders.map((doc) => doc.data());
       setPendingOrders(arr);
     });
@@ -89,7 +88,7 @@ export default function ShoppingCart() {
     activeUserPendingOrder();
   }, [pendingOrders]);
 
-  console.log(activeOrderState, "activeOrderState");
+
 
   const [isOrderModalVisible, setOrderModalVisible] = useState(false); // State to control modal visibility
 
