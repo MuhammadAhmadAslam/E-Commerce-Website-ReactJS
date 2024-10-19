@@ -111,7 +111,7 @@ export default function CheckoutModal({ isVisible, onClose, calculateTotal }) {
   
       // Web3Forms Integration
       const formData = new FormData();
-      formData.append("access_key", "3e389474-3a6a-4d6a-b9f7-cbfebbd79d29"); // Replace with your Web3Forms access key
+      formData.append("access_key", "7d110d28-03a7-49c9-958f-a5806d2af657"); // Replace with your Web3Forms access key
       formData.append("first_name", firstName);
       formData.append("last_name", LastName);
       formData.append("email", emailAddress);
