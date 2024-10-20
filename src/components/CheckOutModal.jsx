@@ -108,7 +108,7 @@ export default function CheckoutModal({ isVisible, onClose, calculateTotal }) {
       // Save to Firebase
       await setDoc(newDocRef, CheckOutObj);
       console.log("Document written with ID: ", uniqueId);
-  
+  //changes howae hae
       // Web3Forms Integration
       const formData = new FormData();
       formData.append("access_key", "7d110d28-03a7-49c9-958f-a5806d2af657"); // Replace with your Web3Forms access key
